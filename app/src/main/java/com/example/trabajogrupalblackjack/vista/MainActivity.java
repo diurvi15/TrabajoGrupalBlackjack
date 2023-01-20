@@ -1,8 +1,10 @@
-package com.example.trabajogrupalblackjack;
+package com.example.trabajogrupalblackjack.vista;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.trabajogrupalblackjack.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -13,12 +13,12 @@
 
     #actividades
 
-        Splash (Main Activity):
+        Splash (Main Activity) (Dany):
             Una pantalla principal con un estilo propio para esa actividad que usaremos como Splash con una duración de 2500ms.
                 Contiene una imagen del Titulo de nuestra Aplicación
                     -Imagen / (ImageView)
 
-        Menú:
+        Menú (Diego):
             Pantalla que se mostrará después del splash donde podremos elegir entre varios botones,
             los cuales nos darán la opción de jugar una partida, ver las estadísticas de las últimas diez partidas
             y los créditos de los creadores del juego. 
@@ -28,31 +28,33 @@
                 esta ventana te dará la opción de jugar la partida o de volver al menú. 
             -Botón de estadísticas /Button (*2)
             -Botón de créditos / button(*3)
+            -Botón de instrucciones / button (*4)
 
 
-        Activity_Jugar: 
+        Activity_Jugar (Guille y Sergio): 
         Una pantalla donde dos jugadores jugaran encima de un tapete y 
         cada uno tendrá su turno para pedir cartas o plantarse. 
             -Botón Pedir Carta / Button
             -Dos botones de Plantarse (uno para cada uno) / Button
 
-            -TerminaroVolverPartida(AlertDialog): Al acabar la partida se 
+            -TerminaroVolverPartida(AlertDialog) (Diego): Al acabar la partida se 
             mostrará para elegir que hacer. 
                 - Una opción para volver a jugar y otra para volver 
                 a la pantalla de inicio.
 
 
 
-        (*2)Estadisticas(AlertDialog):
+        (*2)Estadisticas(AlertDialog) (Josemi):
             Dialog en el que mostraremos los diez últimos ganadores con su puntuación obtenida y la fecha de la partida.
             -Diez Labels para los datos del ganador de cada partida (estos se irán rellenando con el paso de las partidas)
             -Archivo CSV - para guardar los datos en el.
 
 
-        (*3)Créditos(AlertDialog):
+        (*3)Créditos(AlertDialog)(Josemi):
             Dialog en el que mostraremos los nombres de los creadores del juego y el nombre de la aplicación.
 
-        
+        (*4)Instrucciones(AlertDialog)(Josemi)
+            Dialog en la que se explica el juego.
         # lógica de negocio (toda la programación que organiza el funcionamiento de la aplicación) (interface)
 
         # Descripción del proyecto (que efecto va a tener cada error o cada acierto dentro de la aplicacion)

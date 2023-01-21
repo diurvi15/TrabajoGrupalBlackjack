@@ -24,7 +24,7 @@ public class Metodos {
     }
 
     public static void lineaInicialFichero(Context context){
-        if(Arrays.asList(context.fileList()).contains("productos.csv")){
+        if(Arrays.asList(context.fileList()).contains("estadisticas.csv")){
             return;
         }
         creacionFicheroEstadisticas(context, "ganador;puntos obtenidos;fecha");

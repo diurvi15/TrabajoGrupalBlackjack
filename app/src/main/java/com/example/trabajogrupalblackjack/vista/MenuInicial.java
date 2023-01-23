@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -100,8 +101,8 @@ public class MenuInicial extends AppCompatActivity {
         builder.setPositiveButton("JUGAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if (Metodos.compruebaVacio(nombre)){
-                }else if (Metodos.compruebaVacio(nombre2)){
+                if (Metodos.compruebaVacio(nombre,getApplicationContext())){
+                }else if (Metodos.compruebaVacio(nombre2,getApplicationContext())){
                 }else {
                     Intent intent = new Intent(getApplicationContext(), Juego.class);
                     intent.putExtra("jugador1", jugador1);

@@ -2,6 +2,7 @@ package com.example.trabajogrupalblackjack.controlador;
 
 import android.content.Context;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,9 +33,9 @@ public class Metodos {
     }
 
 
-    public static boolean compruebaVacio(EditText campoTexto){
+    public static boolean compruebaVacio(EditText campoTexto,Context context){
         if (campoTexto.getText().length() ==0){
-            campoTexto.setError("El campo " +campoTexto.getHint() + " se encuentra vacio. ");
+            Toast.makeText(context, "Debe introducir datos en los dos campos", Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;

@@ -1,6 +1,7 @@
 package com.example.trabajogrupalblackjack.controlador;
 
 import android.content.Context;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,6 +29,15 @@ public class Metodos {
             return;
         }
         creacionFicheroEstadisticas(context, "ganador;puntos obtenidos;fecha");
+    }
+
+
+    public static boolean compruebaVacio(EditText campoTexto){
+        if (campoTexto.getText().length() ==0){
+            campoTexto.setError("El campo " +campoTexto.getHint() + " se encuentra vacio. ");
+            return true;
+        }
+        return false;
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.trabajogrupalblackjack.vista;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,8 @@ import com.example.trabajogrupalblackjack.R;
 import com.example.trabajogrupalblackjack.modelo.Player;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Juego extends AppCompatActivity {
 
@@ -26,10 +29,16 @@ public class Juego extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
-        //valores  AQUI FALTA CONECTARLO CON EL STRING ARRAY DE VALUES .split(";");
-        recogerControles();
 
-        crearjugador("strin1","strin2"); //PASAR LOS NOMBRES DEL ALERT DIALG
+        prepararpartida();
+
+
+
+
+
+       Intent intent = new Intent();
+        j1 = (Player) intent.getSerializableExtra("jugador1");
+        j2 = (Player) intent.getSerializableExtra("jugador2");
 
 
         pedircartaplayer1.setOnClickListener(v->{
@@ -55,6 +64,7 @@ public class Juego extends AppCompatActivity {
         plantarseplayer1.setOnClickListener(v->{
 
             if(j2.getPlantado()==false) {
+                calcularfin(j1,j2);
                 pedircartaplayer1.setEnabled(false);
                 plantarseplayer1.setEnabled(false);
                 pedircartaplayer2.setEnabled(true);
@@ -64,16 +74,24 @@ public class Juego extends AppCompatActivity {
         });
 
         plantarseplayer2.setOnClickListener(v->{
+
             if(j1.getPlantado()==false) {
+                calcularfin(j1,j2);
                 pedircartaplayer2.setEnabled(false);
                 plantarseplayer2.setEnabled(false);
                 pedircartaplayer1.setEnabled(true);
                 plantarseplayer1.setEnabled(true);
             }
 
-
         });
 
+    }
+
+    private void prepararpartida() {
+        recogerControles();
+        String linea = getString(R.string.valorcartas);
+        valores.add(String.valueOf(linea.split(";")));
+        barajar();
     }
 
     private void sumarpuntos(Player jugador, int puntos){
@@ -93,24 +111,18 @@ public class Juego extends AppCompatActivity {
     }
 
 
-    private void crearjugador(String nombre1,String nombre2) {
-
-        j1 = new Player(nombre1,false,0);
-        j2 = new Player(nombre2,false,0);
-
-    }
-
     //ESTE METODO IRA DESPUES EN LA CARPETA CONTROLADOR
     //SIRVE PARA BORRAR VALORES DEL ARRAY DE VALORES QUE YA SE HAN USADO
     public void actualizarpool(int numero){
 
-        String num = String.valueOf(numero);
+      /*  String num = String.valueOf(numero);
         for(int q = 0;q<valores.size();q++){
             if(valores.get(q).equals(num)){
 
                 valores.remove(q);
                 break;
-            } }
+            } }*/
+        valores.remove(0);
 
     }
 
@@ -151,10 +163,10 @@ public class Juego extends AppCompatActivity {
     //ESTE METODO IRA DESPUES EN LA CARPETA CONTROLADOR
     //SIRVE PARA SACAR UN NUMERO ALEATORIO DE EL ARRAY DE VALORES
     private int sacarnumero(){
-
-        int aleatorio = (int) Math.random()*10+1; //ESTA FORMULA HAY Q RETOCARLA PARA Q VAYA DEL 1 A 13
-
-        int numero = Integer.parseInt(valores.get(aleatorio));
+        /*
+       int aleatorio = (int) Math.random()*10+1; //ESTA FORMULA HAY Q RETOCARLA PARA Q VAYA DEL 1 A 13
+        */
+        int numero = Integer.parseInt(valores.get(0));
 
         return numero;
     }
@@ -166,6 +178,10 @@ public class Juego extends AppCompatActivity {
         plantarseplayer2 = findViewById(R.id.j2plantarse);
     }
 
+    private void barajar(){
 
+        Collections.shuffle(valores);
+
+    }
 
 }

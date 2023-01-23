@@ -103,6 +103,7 @@ public class MenuInicial extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (Metodos.compruebaVacio(nombre,getApplicationContext())){
                 }else if (Metodos.compruebaVacio(nombre2,getApplicationContext())){
+                }else if(Metodos.nombresDistintos(getApplicationContext(), nombre, nombre2)){
                 }else {
                     Intent intent = new Intent(getApplicationContext(), Juego.class);
                     intent.putExtra("jugador1", jugador1);

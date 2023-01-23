@@ -41,4 +41,12 @@ public class Metodos {
         return false;
     }
 
+    public static boolean nombresDistintos(Context context, EditText nombre1, EditText nombre2){
+        if(nombre1.getText().toString().equals(nombre2.getText().toString())){
+            Toast.makeText(context, "Debe introducir nombres distintos", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
+    }
+
 }

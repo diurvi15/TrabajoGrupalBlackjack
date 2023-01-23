@@ -25,19 +25,12 @@ public class MenuInicial extends AppCompatActivity {
     private Button creditosBtn;
     private Button instruccionesBtn;
     private Button botonJugar;
-    private static EditText nombre ;
-    private static EditText nombre2 ;
-    private static View view;
-    private static LayoutInflater inflater;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_inicial);
-        inflater = getLayoutInflater();
-        view = inflater.inflate(R.layout.boton_jugar,null);
         botonJugar = findViewById(R.id.btnJugar);
-        nombre = view.findViewById(R.id.txtNombreJug1);
-        nombre2 = view.findViewById(R.id.txtNombreJug2);
+
         botonJugar.setOnClickListener(v->{
             DialogBotonJugar();
         });
@@ -93,9 +86,15 @@ public class MenuInicial extends AppCompatActivity {
     private View.OnClickListener DialogBotonJugar(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("EMPEZAR PARTIDA");
-        view = inflater.inflate(R.layout.boton_jugar,null);
+
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.boton_jugar,null);
+
+        EditText nombre = view.findViewById(R.id.txtNombreJug1);
         Player jugador1 = new Player(nombre.getText().toString(),false, 0);
+        EditText nombre2 = view.findViewById(R.id.txtNombreJug2);
         Player jugador2 = new Player(nombre2.getText().toString(),false, 0);
+
 
         builder.setNegativeButton("CERRAR",null);
         builder.setPositiveButton("JUGAR", new DialogInterface.OnClickListener() {

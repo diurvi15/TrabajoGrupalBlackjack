@@ -32,6 +32,7 @@ public class Juego extends AppCompatActivity {
         prepararpartida();
 
         pedircartaplayer1.setOnClickListener(v->{
+
             int numero = sacarnumero();
             actualizarpool();
             int puntos = valordelacarta(numero, MenuInicial.jugador1);
@@ -40,10 +41,13 @@ public class Juego extends AppCompatActivity {
             if(calcularfin()){
                 ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
             }
+            if(!MenuInicial.jugador2.getPlantado()) {
             disabletraspedir1();
+            }
         });
 
         pedircartaplayer2.setOnClickListener(v->{
+
             int numero = sacarnumero();
             actualizarpool();
             int puntos = valordelacarta(numero,MenuInicial.jugador2);
@@ -51,11 +55,14 @@ public class Juego extends AppCompatActivity {
             if(calcularfin()){
                 ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
             }
+            if(!MenuInicial.jugador1.getPlantado()) {
             disabletraspedir2();
+            }
         });
 
         plantarseplayer1.setOnClickListener(v->{
             if(!MenuInicial.jugador2.getPlantado()) {
+                MenuInicial.jugador1.setPlantado(true);
                 if(calcularfin()){
                     ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
                 }
@@ -65,6 +72,7 @@ public class Juego extends AppCompatActivity {
 
         plantarseplayer2.setOnClickListener(v->{
             if(!MenuInicial.jugador1.getPlantado()) {
+                MenuInicial.jugador2.setPlantado(true);
                 if(calcularfin()){
                     ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
                 }

@@ -23,13 +23,12 @@ public class Juego extends AppCompatActivity {
     private Button pedircartaplayer2;
     private Button plantarseplayer1;
     private Button plantarseplayer2;
-    public Player j1,j2,ganador;
+    public Player ganador;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
         prepararpartida();
-        recojerintent();
         pedircartaplayer1.setOnClickListener(v->{
             int numero = sacarnumero();
             actualizarpool();
@@ -71,11 +70,7 @@ public class Juego extends AppCompatActivity {
             }
         });
     }
-    private void recojerintent() {
-        Intent intent = new Intent();
-        j1 = (Player) intent.getSerializableExtra("jugador1");
-        j2 = (Player) intent.getSerializableExtra("jugador2");
-    }
+
     private void prepararpartida() {
 
         recogerControles();

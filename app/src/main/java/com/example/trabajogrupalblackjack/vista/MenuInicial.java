@@ -111,8 +111,6 @@ public class MenuInicial extends AppCompatActivity {
                     jugador2 = new Player(nombre2.getText().toString(),false, 0);
 
                     Intent intent = new Intent(getApplicationContext(), Juego.class);
-                    //intent.putExtra("jugador1", jugador1);
-                    //intent.putExtra("jugador2", jugador2);
                     startActivity(intent);
                 }}
         });

@@ -18,38 +18,42 @@ import java.util.Collections;
 
 public class Juego extends AppCompatActivity {
 
-    public ArrayList<String> valores;
+    public  ArrayList<String> valores;
     private Button pedircartaplayer1;
     private Button pedircartaplayer2;
     private Button plantarseplayer1;
     private Button plantarseplayer2;
-    public Player ganador;
+    public  Player ganador;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
         prepararpartida();
+
         pedircartaplayer1.setOnClickListener(v->{
             int numero = sacarnumero();
             actualizarpool();
             int puntos = valordelacarta(numero, MenuInicial.jugador1);
             sumarpuntos(MenuInicial.jugador1,puntos);
-            if(calcularfin(MenuInicial.jugador1,MenuInicial.jugador2)){
+            if(calcularfin()){
                 ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
             }
         });
+
         pedircartaplayer2.setOnClickListener(v->{
             int numero = sacarnumero();
             actualizarpool();
             int puntos = valordelacarta(numero,MenuInicial.jugador2);
             sumarpuntos(MenuInicial.jugador2,puntos);
-            if(calcularfin(MenuInicial.jugador1,MenuInicial.jugador2)){
+            if(calcularfin()){
                 ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
             }
         });
+
         plantarseplayer1.setOnClickListener(v->{
             if(!MenuInicial.jugador2.getPlantado()) {
-                if(calcularfin(MenuInicial.jugador1,MenuInicial.jugador2)){
+                if(calcularfin()){
                     ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
                 }
                 pedircartaplayer1.setEnabled(false);
@@ -58,9 +62,10 @@ public class Juego extends AppCompatActivity {
                 plantarseplayer2.setEnabled(true);
             }
         });
+
         plantarseplayer2.setOnClickListener(v->{
             if(!MenuInicial.jugador1.getPlantado()) {
-                if(calcularfin(MenuInicial.jugador1,MenuInicial.jugador2)){
+                if(calcularfin()){
                     ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
                 }
                 pedircartaplayer2.setEnabled(false);
@@ -77,6 +82,7 @@ public class Juego extends AppCompatActivity {
         cargarbaraja();
 
     }
+
     private void cargarbaraja() {
         valores = new ArrayList<>(52);
         String linea = getString(R.string.valorcartas);
@@ -85,9 +91,11 @@ public class Juego extends AppCompatActivity {
 
         Collections.shuffle(valores);
     }
+
     private void sumarpuntos(Player jugador, int puntos){
         jugador.setPuntos(jugador.getPuntos()+puntos) ;
     }
+
     private int valordelacarta(int numero,Player jugador){
         int valorcarta;
         if(numero == 1){valorcarta = unoonce(jugador);}
@@ -97,6 +105,7 @@ public class Juego extends AppCompatActivity {
         else {valorcarta = numero;}
         return valorcarta;
     }
+
     //ESTE METODO IRA DESPUES EN LA CARPETA CONTROLADOR
     //SIRVE PARA BORRAR VALORES DEL ARRAY DE VALORES QUE YA SE HAN USADO
     public void actualizarpool(){
@@ -108,6 +117,7 @@ public class Juego extends AppCompatActivity {
             } }*/
         valores.remove(0);
     }
+
     //ESTE METODO ES PARA ELGIR QUE VALOR TENDRA EL AS
     public int unoonce(Player jugador){
         if(jugador.getPuntos()+ 11 <21 ){
@@ -122,19 +132,21 @@ public class Juego extends AppCompatActivity {
         }
         return 1;
     }
+
     //ESTE METODO IRA DESPUES EN LA CARPETA CONTROLADOR
     //SIRVE PARA VER SI SE HA ACABADO LA PARTIDA, CADA VEZ QUE SE PIDA CARTA HAY QUE LLAMAR A ESTE METODO
-    public boolean calcularfin(Player jugador1, Player jugador2){
-        if(jugador1.getPlantado() && jugador2.getPuntos() > jugador1.getPuntos()
+    public boolean calcularfin(){
+        if(MenuInicial.jugador1.getPlantado() && MenuInicial.jugador2.getPuntos() > MenuInicial.jugador1.getPuntos()
                 ||
-                jugador2.getPlantado() && jugador1.getPuntos() > jugador2.getPuntos())
+                MenuInicial.jugador2.getPlantado() && MenuInicial.jugador1.getPuntos() > MenuInicial.jugador2.getPuntos())
         {return true;}
-        else if(jugador1.getPuntos()>=21||jugador2.getPuntos()>=21)
+        else if(MenuInicial.jugador1.getPuntos()>=21||MenuInicial.jugador2.getPuntos()>=21)
         {return true;}
 
         else{return false;}
 
     }
+
     private Player comprobarganador(Player jugador1, Player jugador2) {
         if(jugador1.getPuntos() > jugador2.getPuntos()){
             if(jugador1.getPuntos() - 21 <=0){return jugador1;}
@@ -146,6 +158,7 @@ public class Juego extends AppCompatActivity {
             else{return new Player("Empate",true,0);}
         }else{return new Player("Empate",true,0);}
     }
+
     //ESTE METODO IRA DESPUES EN LA CARPETA CONTROLADOR
     //SIRVE PARA SACAR UN NUMERO ALEATORIO DE EL ARRAY DE VALORES
     private int sacarnumero(){
@@ -154,6 +167,7 @@ public class Juego extends AppCompatActivity {
 
         return Integer.parseInt(valores.get(0));
     }
+
     private void recogerControles(){
         pedircartaplayer1 = findViewById(R.id.j1pedircarta);
         pedircartaplayer2 = findViewById(R.id.j2pedircarta);

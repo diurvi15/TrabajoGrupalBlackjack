@@ -26,6 +26,10 @@ public class MenuInicial extends AppCompatActivity {
     private Button creditosBtn;
     private Button instruccionesBtn;
     private Button botonJugar;
+    private EditText nombre1;
+    private EditText nombre2;
+    public static Player jugador1;
+    public static Player jugador2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +50,7 @@ public class MenuInicial extends AppCompatActivity {
                 instrucciones.setMessage("");
             }
         });
-        
+
         creditosBtn = (Button) findViewById(R.id.btnCreditos);
         creditosBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,23 +95,24 @@ public class MenuInicial extends AppCompatActivity {
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.boton_jugar,null);
 
-        EditText nombre = view.findViewById(R.id.txtNombreJug1);
-        Player jugador1 = new Player(nombre.getText().toString(),false, 0);
-        EditText nombre2 = view.findViewById(R.id.txtNombreJug2);
-        Player jugador2 = new Player(nombre2.getText().toString(),false, 0);
-
-
         builder.setNegativeButton("CERRAR",null);
         builder.setPositiveButton("JUGAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if (Metodos.compruebaVacio(nombre,getApplicationContext())){
+
+                nombre1 = view.findViewById(R.id.txtNombreJug1);
+                nombre2 = view.findViewById(R.id.txtNombreJug2);
+
+                if (Metodos.compruebaVacio(nombre1,getApplicationContext())){
                 }else if (Metodos.compruebaVacio(nombre2,getApplicationContext())){
-                }else if(Metodos.nombresDistintos(getApplicationContext(), nombre, nombre2)){
+                }else if(Metodos.nombresDistintos(getApplicationContext(), nombre1, nombre2)){
                 }else {
+                    jugador1 = new Player(nombre1.getText().toString(),false, 0);
+                    jugador2 = new Player(nombre2.getText().toString(),false, 0);
+
                     Intent intent = new Intent(getApplicationContext(), Juego.class);
-                    intent.putExtra("jugador1", jugador1);
-                    intent.putExtra("jugador2", jugador2);
+                    //intent.putExtra("jugador1", jugador1);
+                    //intent.putExtra("jugador2", jugador2);
                     startActivity(intent);
                 }}
         });

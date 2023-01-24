@@ -6,75 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".vista.Juego">
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="82dp"
-        android:layout_height="119dp"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="48dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="82dp"
-        android:layout_height="119dp"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="93dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="82dp"
-        android:layout_height="119dp"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="133dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="82dp"
-        android:layout_height="119dp"
-        tools:layout_editor_absoluteX="474dp"
-        tools:layout_editor_absoluteY="48dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="82dp"
-        android:layout_height="119dp"
-        tools:layout_editor_absoluteX="518dp"
-        tools:layout_editor_absoluteY="88dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <Button
         android:id="@+id/j1pedircarta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="330dp" />
+        android:layout_marginBottom="32dp"
+        android:text="Pedir J1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/j1plantarse"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/j1plantarse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="146dp"
-        tools:layout_editor_absoluteY="330dp" />
+        android:text="Plantarse J1"
+        app:layout_constraintBottom_toBottomOf="@+id/j2pedircarta"
+        app:layout_constraintEnd_toStartOf="@+id/j2pedircarta"
+        app:layout_constraintHorizontal_bias="0.615"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/j2plantarse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="600dp"
-        tools:layout_editor_absoluteY="330dp" />
+        android:layout_marginEnd="28dp"
+        android:text="Plantarse J2"
+        app:layout_constraintBottom_toBottomOf="@+id/j2pedircarta"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/j2pedircarta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="474dp"
-        tools:layout_editor_absoluteY="329dp" />
+        android:text="Pedir J2"
+        app:layout_constraintBottom_toBottomOf="@+id/j1pedircarta"
+        app:layout_constraintEnd_toStartOf="@+id/j2plantarse"
+        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

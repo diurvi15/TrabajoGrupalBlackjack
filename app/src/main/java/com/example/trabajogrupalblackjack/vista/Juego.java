@@ -36,9 +36,11 @@ public class Juego extends AppCompatActivity {
             actualizarpool();
             int puntos = valordelacarta(numero, MenuInicial.jugador1);
             sumarpuntos(MenuInicial.jugador1,puntos);
+
             if(calcularfin()){
                 ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
             }
+            disabletraspedir1();
         });
 
         pedircartaplayer2.setOnClickListener(v->{
@@ -49,6 +51,7 @@ public class Juego extends AppCompatActivity {
             if(calcularfin()){
                 ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
             }
+            disabletraspedir2();
         });
 
         plantarseplayer1.setOnClickListener(v->{
@@ -56,10 +59,7 @@ public class Juego extends AppCompatActivity {
                 if(calcularfin()){
                     ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
                 }
-                pedircartaplayer1.setEnabled(false);
-                plantarseplayer1.setEnabled(false);
-                pedircartaplayer2.setEnabled(true);
-                plantarseplayer2.setEnabled(true);
+                disabletraspedir1();
             }
         });
 
@@ -68,12 +68,22 @@ public class Juego extends AppCompatActivity {
                 if(calcularfin()){
                     ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
                 }
-                pedircartaplayer2.setEnabled(false);
-                plantarseplayer2.setEnabled(false);
-                pedircartaplayer1.setEnabled(true);
-                plantarseplayer1.setEnabled(true);
+               disabletraspedir2();
             }
         });
+    }
+
+    private void disabletraspedir2() {
+        pedircartaplayer2.setEnabled(false);
+        plantarseplayer2.setEnabled(false);
+        pedircartaplayer1.setEnabled(true);
+        plantarseplayer1.setEnabled(true);
+    }
+    private void disabletraspedir1() {
+        pedircartaplayer2.setEnabled(true);
+        plantarseplayer2.setEnabled(true);
+        pedircartaplayer1.setEnabled(false);
+        plantarseplayer1.setEnabled(false);
     }
 
     private void prepararpartida() {

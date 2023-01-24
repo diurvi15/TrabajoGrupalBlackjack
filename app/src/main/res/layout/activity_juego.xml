@@ -32,6 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
+        android:enabled="false"
         android:text="Plantarse J2"
         app:layout_constraintBottom_toBottomOf="@+id/j2pedircarta"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -40,6 +41,7 @@
         android:id="@+id/j2pedircarta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:text="Pedir J2"
         app:layout_constraintBottom_toBottomOf="@+id/j1pedircarta"
         app:layout_constraintEnd_toStartOf="@+id/j2plantarse"

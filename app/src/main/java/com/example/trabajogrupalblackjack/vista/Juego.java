@@ -33,25 +33,25 @@ public class Juego extends AppCompatActivity {
         pedircartaplayer1.setOnClickListener(v->{
             int numero = sacarnumero();
             actualizarpool();
-            int puntos = valordelacarta(numero,j1);
-            sumarpuntos(j1,puntos);
-            if(calcularfin(j1,j2)){
-                ganador = comprobarganador(j1,j2);
+            int puntos = valordelacarta(numero, MenuInicial.jugador1);
+            sumarpuntos(MenuInicial.jugador1,puntos);
+            if(calcularfin(MenuInicial.jugador1,MenuInicial.jugador2)){
+                ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
             }
         });
         pedircartaplayer2.setOnClickListener(v->{
             int numero = sacarnumero();
             actualizarpool();
-            int puntos = valordelacarta(numero,j2);
-            sumarpuntos(j2,puntos);
-            if(calcularfin(j1,j2)){
-                ganador = comprobarganador(j1,j2);
+            int puntos = valordelacarta(numero,MenuInicial.jugador2);
+            sumarpuntos(MenuInicial.jugador2,puntos);
+            if(calcularfin(MenuInicial.jugador1,MenuInicial.jugador2)){
+                ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
             }
         });
         plantarseplayer1.setOnClickListener(v->{
-            if(!j2.getPlantado()) {
-                if(calcularfin(j1,j2)){
-                    ganador = comprobarganador(j1,j2);
+            if(!MenuInicial.jugador2.getPlantado()) {
+                if(calcularfin(MenuInicial.jugador1,MenuInicial.jugador2)){
+                    ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
                 }
                 pedircartaplayer1.setEnabled(false);
                 plantarseplayer1.setEnabled(false);
@@ -60,9 +60,9 @@ public class Juego extends AppCompatActivity {
             }
         });
         plantarseplayer2.setOnClickListener(v->{
-            if(!j1.getPlantado()) {
-                if(calcularfin(j1,j2)){
-                    ganador = comprobarganador(j1,j2);
+            if(!MenuInicial.jugador1.getPlantado()) {
+                if(calcularfin(MenuInicial.jugador1,MenuInicial.jugador2)){
+                    ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
                 }
                 pedircartaplayer2.setEnabled(false);
                 plantarseplayer2.setEnabled(false);

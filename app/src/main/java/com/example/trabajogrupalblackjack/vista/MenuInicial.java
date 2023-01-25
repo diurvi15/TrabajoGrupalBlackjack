@@ -30,6 +30,7 @@ public class MenuInicial extends AppCompatActivity {
     private EditText nombre2;
     public static Player jugador1;
     public static Player jugador2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,26 +41,18 @@ public class MenuInicial extends AppCompatActivity {
             DialogBotonJugar();
         });
 
-
-
-        instruccionesBtn = (Button) findViewById(R.id.btnInstrucciones);
-        instruccionesBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder instrucciones = new AlertDialog.Builder(MenuInicial.this);
-                instrucciones.setMessage("");
-            }
-        });
+        //ALERT DIALOG CREDITOS
 
         creditosBtn = (Button) findViewById(R.id.btnCreditos);
         creditosBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder creditos = new AlertDialog.Builder(MenuInicial.this);
                 creditos.setMessage("Diego Urmente\n\n" +
                                     "Guillermo Fabián\n\n" +
                                     "Daniel Gimenez\n\n" +
-                                    "Jose Miguel Marco\n\n" +
+                                    "José Miguel Marco\n\n" +
                                     "Sergio Alejaldre")
                         .setPositiveButton("Volver", null);
 
@@ -76,12 +69,32 @@ public class MenuInicial extends AppCompatActivity {
         return true;
     }
 
+    //ALERT DIALOG INSTRUCCIONES
+    
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
 
         if(item.getItemId() == R.id.boton1){
-            Intent intent = new Intent(getApplicationContext(), Juego.class);
-            startActivity(intent);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("¿Cómo jugar?");
+            builder.setMessage("- Este juego consiste en enfrentarse a la banca  intentando conseguir 21 puntos o lo más cercano posible sin pasarse.\n\n" +
+                               "- Dicha puntuación se suma con los valores de las 2 cartas que se reparten de inicio a cada jugador.\n\n" +
+                               "- Si las dos cartas iniciales suman 21, se denomina Blackjack y habrás ganado.\n\n" +
+                               "- Si no sumas 21 con las 2 cartas, podrás pedir cartas para conseguir dicho número o uno cercano pero sin pasarse ya que perderías automáticamente.\n\n" +
+                               "- Si consideras que tienes una jugada próxima a 21, o que pedir más cartas podría hacerte pasarte de 21, tienes la opción de plantarte y esperar a lo que saque el crupier.");
+
+            builder.setPositiveButton("Volver", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+
+            //Intent intent = new Intent(getApplicationContext(), Juego.class);
+            //startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

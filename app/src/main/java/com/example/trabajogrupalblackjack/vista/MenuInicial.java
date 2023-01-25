@@ -57,7 +57,7 @@ public class MenuInicial extends AppCompatActivity {
                         .setPositiveButton("Volver", null);
 
                 AlertDialog titulo = creditos.create();
-                titulo.setTitle("Aplicación realizada por:\n");
+                titulo.setTitle("Blackjack realizado por:\n");
                 titulo.show();
             }
         });
@@ -92,9 +92,7 @@ public class MenuInicial extends AppCompatActivity {
 
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
-
-            //Intent intent = new Intent(getApplicationContext(), Juego.class);
-            //startActivity(intent);
+            ;
         }
 
         return super.onOptionsItemSelected(item);

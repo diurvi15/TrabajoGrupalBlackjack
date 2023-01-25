@@ -24,7 +24,7 @@ import com.example.trabajogrupalblackjack.modelo.Player;
 public class MenuInicial extends AppCompatActivity {
 
     private Button creditosBtn;
-    private Button instruccionesBtn;
+    private Button estadisticasBtn;
     private Button botonJugar;
     private EditText nombre1;
     private EditText nombre2;
@@ -41,7 +41,16 @@ public class MenuInicial extends AppCompatActivity {
             DialogBotonJugar();
         });
 
-        //ALERT DIALOG CREDITOS
+        estadisticasBtn = (Button) findViewById(R.id.btnEstadisticas);
+        estadisticasBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                dialogoEstadisticas();
+            }
+        });
+
+        //ALERTDIALOG CREDITOS
 
         creditosBtn = (Button) findViewById(R.id.btnCreditos);
         creditosBtn.setOnClickListener(new View.OnClickListener() {
@@ -130,5 +139,17 @@ public class MenuInicial extends AppCompatActivity {
         builder.show();
 
         return null;
+    }
+
+    public void dialogoEstadisticas(){
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        dialogo.setTitle("Últimos diez ganadores:");
+
+        View dialogoView = inflater.inflate(R.layout.dialog_estadisticas, null);
+        dialogo.setView(dialogoView);
+
+        dialogo.show();
+
     }
 }

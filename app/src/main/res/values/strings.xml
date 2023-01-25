@@ -7,4 +7,19 @@
         1;2;3;4;5;6;7;8;9;10;11;12;13
     </string>
     <string name ="palos">Hueso;Brujula;Fruta;Barco</string>
+    <string name="creditos">"Diego Urmente\n\n"
+                                    "Guillermo Fabián\n\n"
+                                    "Daniel Gimenez\n\n"
+                                    "José Miguel Marco\n\n"
+                                    "Sergio Alejaldre"
+    </string>
+    <string name="info"> "- Este juego consiste en enfrentarse a la banca  intentando conseguir 21 puntos o lo más cercano posible sin pasarse.\n\n"
+                               "- Dicha puntuación se suma con los valores de las 2 cartas que se reparten de inicio a cada jugador.\n\n"
+                               "- Si las dos cartas iniciales suman 21, se denomina Blackjack y habrás ganado.\n\n"
+                               "- Si no sumas 21 con las 2 cartas, podrás pedir cartas para conseguir dicho número o uno cercano pero sin pasarse ya que perderías automáticamente.\n\n"
+                               "- Si consideras que tienes una jugada próxima a 21, o que pedir más cartas podría hacerte pasarte de 21, tienes la opción de plantarte y esperar a lo que saque el crupier."</string>
+
+
+
+
 </resources>

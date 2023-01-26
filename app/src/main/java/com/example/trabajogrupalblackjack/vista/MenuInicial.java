@@ -58,11 +58,7 @@ public class MenuInicial extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder creditos = new AlertDialog.Builder(MenuInicial.this);
-                creditos.setMessage("Diego Urmente\n\n" +
-                                    "Guillermo Fabián\n\n" +
-                                    "Daniel Gimenez\n\n" +
-                                    "José Miguel Marco\n\n" +
-                                    "Sergio Alejaldre")
+                creditos.setMessage(getString(R.string.creditos))
                         .setPositiveButton("Volver", null);
 
                 AlertDialog titulo = creditos.create();
@@ -86,11 +82,7 @@ public class MenuInicial extends AppCompatActivity {
         if(item.getItemId() == R.id.boton1){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("¿Cómo jugar?");
-            builder.setMessage("- Este juego consiste en enfrentarse a la banca  intentando conseguir 21 puntos o lo más cercano posible sin pasarse.\n\n" +
-                               "- Dicha puntuación se suma con los valores de las 2 cartas que se reparten de inicio a cada jugador.\n\n" +
-                               "- Si las dos cartas iniciales suman 21, se denomina Blackjack y habrás ganado.\n\n" +
-                               "- Si no sumas 21 con las 2 cartas, podrás pedir cartas para conseguir dicho número o uno cercano pero sin pasarse ya que perderías automáticamente.\n\n" +
-                               "- Si consideras que tienes una jugada próxima a 21, o que pedir más cartas podría hacerte pasarte de 21, tienes la opción de plantarte y esperar a lo que saque el crupier.");
+            builder.setMessage(getString(R.string.info));
 
             builder.setPositiveButton("Volver", new DialogInterface.OnClickListener() {
                 @Override

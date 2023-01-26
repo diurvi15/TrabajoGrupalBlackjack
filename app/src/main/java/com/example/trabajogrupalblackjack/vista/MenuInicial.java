@@ -133,10 +133,11 @@ public class MenuInicial extends AppCompatActivity {
         return null;
     }
 
-    public void dialogoEstadisticas(){
+    public void dialogoEstadisticas() {
         AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
         dialogo.setTitle("Últimos diez ganadores:");
+        dialogo.setPositiveButton("Volver", null);
 
         View dialogoView = inflater.inflate(R.layout.dialog_estadisticas, null);
         dialogo.setView(dialogoView);

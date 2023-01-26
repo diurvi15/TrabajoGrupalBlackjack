@@ -6,6 +6,82 @@
     android:layout_height="match_parent"
     tools:context=".vista.Juego">
 
+    <ImageView
+        android:id="@+id/primeracartaj7"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="368dp"
+        android:layout_marginTop="104dp"
+        app:layout_constraintBottom_toTopOf="@+id/j1pedircarta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/cartablanca" />
+
+    <ImageView
+        android:id="@+id/primeracartaj8"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/j1pedircarta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.66"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.574"
+        app:srcCompat="@drawable/cartablanca" />
+
+    <ImageView
+        android:id="@+id/primeracartaj9"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/j1pedircarta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.74"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.574"
+        app:srcCompat="@drawable/cartablanca" />
+
+    <ImageView
+        android:id="@+id/primeracartaj10"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/j1pedircarta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.819"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.574"
+        app:srcCompat="@drawable/cartablanca" />
+
+    <ImageView
+        android:id="@+id/primeracartaj11"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/j1pedircarta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.896"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.574"
+        app:srcCompat="@drawable/cartablanca" />
+
+    <ImageView
+        android:id="@+id/primeracartaj12"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/j1pedircarta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.976"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.574"
+        app:srcCompat="@drawable/cartablanca" />
+
     <Button
         android:id="@+id/j1pedircarta"
         android:layout_width="wrap_content"
@@ -47,4 +123,150 @@
         app:layout_constraintEnd_toStartOf="@+id/j2plantarse"
         app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/valorjugador1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/valorjugador2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/primeracartaj1"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="104dp"
+        app:layout_constraintBottom_toTopOf="@+id/j1pedircarta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/cartablanca" />
+
+    <ImageView
+        android:id="@+id/palo1"
+        android:layout_width="40dp"
+        android:layout_height="62dp"
+        app:layout_constraintBottom_toBottomOf="@+id/valor1"
+        app:layout_constraintEnd_toEndOf="@+id/primeracartaj1"
+        app:layout_constraintStart_toEndOf="@+id/valor1"
+        app:layout_constraintTop_toTopOf="@+id/valor1"
+        app:srcCompat="@drawable/brujula" />
+
+    <TextView
+        android:id="@+id/valor1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:textSize="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/primeracartaj1"
+        app:layout_constraintEnd_toEndOf="@+id/primeracartaj1"
+        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintStart_toStartOf="@+id/primeracartaj1"
+        app:layout_constraintTop_toTopOf="@+id/primeracartaj1" />
+
+    <ImageView
+        android:id="@+id/primeracartaj2"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/j1pedircarta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.574"
+        app:srcCompat="@drawable/cartablanca" />
+
+    <TextView
+        android:id="@+id/valor2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:textSize="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/valor1"
+        app:layout_constraintEnd_toEndOf="@+id/primeracartaj2"
+        app:layout_constraintHorizontal_bias="0.166"
+        app:layout_constraintStart_toStartOf="@+id/palo1"
+        app:layout_constraintTop_toTopOf="@+id/valor1"
+        app:layout_constraintVertical_bias="0.53" />
+
+    <ImageView
+        android:id="@+id/primeracartaj3"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/j1pedircarta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.183"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.574"
+        app:srcCompat="@drawable/cartablanca" />
+
+    <TextView
+        android:id="@+id/valor3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:textSize="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/valor1"
+        app:layout_constraintEnd_toEndOf="@+id/primeracartaj3"
+        app:layout_constraintHorizontal_bias="0.154"
+        app:layout_constraintStart_toEndOf="@+id/primeracartaj1"
+        app:layout_constraintTop_toTopOf="@+id/valor1"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/primeracartaj4"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/j1pedircarta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.261"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.574"
+        app:srcCompat="@drawable/cartablanca" />
+
+    <ImageView
+        android:id="@+id/primeracartaj5"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/j1pedircarta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.34"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.574"
+        app:srcCompat="@drawable/cartablanca" />
+
+    <ImageView
+        android:id="@+id/primeracartaj6"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/j1pedircarta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.419"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.574"
+        app:srcCompat="@drawable/cartablanca" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

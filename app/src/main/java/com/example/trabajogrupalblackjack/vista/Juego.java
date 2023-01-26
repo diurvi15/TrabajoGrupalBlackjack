@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.trabajogrupalblackjack.R;
 import com.example.trabajogrupalblackjack.modelo.Player;
@@ -24,6 +25,8 @@ public class Juego extends AppCompatActivity {
     private Button plantarseplayer1;
     private Button plantarseplayer2;
     public  Player ganador;
+    private TextView lblpuntos1;
+    private TextView lblpuntos2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class Juego extends AppCompatActivity {
             actualizarpool();
             int puntos = valordelacarta(numero, MenuInicial.jugador1);
             sumarpuntos(MenuInicial.jugador1,puntos);
+            lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
             if(calcularfin()){
                 ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
@@ -52,6 +56,7 @@ public class Juego extends AppCompatActivity {
             actualizarpool();
             int puntos = valordelacarta(numero,MenuInicial.jugador2);
             sumarpuntos(MenuInicial.jugador2,puntos);
+            lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
             if(calcularfin()){
                 ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
             }
@@ -191,6 +196,8 @@ public class Juego extends AppCompatActivity {
         pedircartaplayer2 = findViewById(R.id.j2pedircarta);
         plantarseplayer1 = findViewById(R.id.j1plantarse);
         plantarseplayer2 = findViewById(R.id.j2plantarse);
+        lblpuntos1 = findViewById(R.id.valorjugador1);
+        lblpuntos2 = findViewById(R.id.valorjugador2);
     }
 
 }

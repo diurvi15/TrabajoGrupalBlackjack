@@ -207,7 +207,7 @@
         android:id="@+id/primeracartaj3"
         android:layout_width="100dp"
         android:layout_height="150dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/j1pedircarta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.183"
@@ -234,7 +234,7 @@
         android:id="@+id/primeracartaj4"
         android:layout_width="100dp"
         android:layout_height="150dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/j1pedircarta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.261"
@@ -243,11 +243,26 @@
         app:layout_constraintVertical_bias="0.574"
         app:srcCompat="@drawable/cartablanca" />
 
+    <TextView
+        android:id="@+id/valor4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="5"
+        android:textSize="50dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/valor1"
+        app:layout_constraintEnd_toEndOf="@+id/primeracartaj4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/primeracartaj2"
+        app:layout_constraintTop_toTopOf="@+id/valor1"
+        app:layout_constraintVertical_bias="1.0" />
+
     <ImageView
         android:id="@+id/primeracartaj5"
         android:layout_width="100dp"
         android:layout_height="150dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/j1pedircarta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.34"
@@ -255,6 +270,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.574"
         app:srcCompat="@drawable/cartablanca" />
+
+    <TextView
+        android:id="@+id/valor5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:textSize="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/valor1"
+        app:layout_constraintEnd_toEndOf="@+id/primeracartaj5"
+        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintStart_toEndOf="@+id/primeracartaj3"
+        app:layout_constraintTop_toTopOf="@+id/valor1"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/primeracartaj6"
@@ -268,5 +297,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.574"
         app:srcCompat="@drawable/cartablanca" />
+
+    <TextView
+        android:id="@+id/valor6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:textSize="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/valor1"
+        app:layout_constraintEnd_toEndOf="@+id/primeracartaj6"
+        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintStart_toEndOf="@+id/primeracartaj4"
+        app:layout_constraintTop_toTopOf="@+id/valor1"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

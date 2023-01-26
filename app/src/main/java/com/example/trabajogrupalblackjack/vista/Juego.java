@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.trabajogrupalblackjack.R;
@@ -27,6 +28,19 @@ public class Juego extends AppCompatActivity {
     public  Player ganador;
     private TextView lblpuntos1;
     private TextView lblpuntos2;
+
+    private ImageView carta1;
+    private ImageView carta2;
+    private ImageView carta3;
+    private ImageView carta4;
+    private ImageView carta5;
+    private ImageView carta6;
+    private ImageView carta7;
+    private ImageView carta8;
+    private ImageView carta9;
+    private ImageView carta10;
+    private ImageView carta11;
+    private ImageView carta12;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,6 +212,18 @@ public class Juego extends AppCompatActivity {
         plantarseplayer2 = findViewById(R.id.j2plantarse);
         lblpuntos1 = findViewById(R.id.valorjugador1);
         lblpuntos2 = findViewById(R.id.valorjugador2);
+        carta1 = findViewById(R.id.primeracartaj1);
+        carta1 = findViewById(R.id.primeracartaj2);
+        carta1 = findViewById(R.id.primeracartaj3);
+        carta1 = findViewById(R.id.primeracartaj4);
+        carta1 = findViewById(R.id.primeracartaj5);
+        carta1 = findViewById(R.id.primeracartaj6);
+        carta1 = findViewById(R.id.primeracartaj7);
+        carta1 = findViewById(R.id.primeracartaj8);
+        carta1 = findViewById(R.id.primeracartaj9);
+        carta1 = findViewById(R.id.primeracartaj10);
+        carta1 = findViewById(R.id.primeracartaj11);
+        carta1 = findViewById(R.id.primeracartaj12);
     }
 
 }

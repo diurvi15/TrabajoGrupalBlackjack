@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">TrabajoGrupalBlackjack</string>
-    <string name="nombre">One Piece Back Jack</string>
+    <string name="nombre">One Piece Black Jack</string>
     <string name="valorcartas">1;2;3;4;5;6;7;8;9;10;11;12;13;1;2;3;4;5;6;7;8;9;10;11;12;13;1;2;3;4;5;6;7;8;9;10;11;12;13;1;2;3;4;5;6;7;8;9;10;11;12;13
     </string>
     <string name ="palos">Hueso;Brujula;Fruta;Barco</string>

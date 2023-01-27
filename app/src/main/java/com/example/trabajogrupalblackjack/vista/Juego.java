@@ -87,7 +87,7 @@ public class Juego extends AppCompatActivity {
             Cartas carta = darcarta(mano1);
             int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1,mano1);
             mostrarnuevacartaj1(carta);
-            sumarpuntos(MenuInicial.jugador1,puntos);
+            sumarpuntos(MenuInicial.jugador1,puntos,mano1);
             lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
             if(calcularfin()){
@@ -104,7 +104,7 @@ public class Juego extends AppCompatActivity {
             Cartas carta = darcarta(mano2);
             int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2,mano2);
             mostrarnuevacartaj2(carta);
-            sumarpuntos(MenuInicial.jugador2,puntos);
+            sumarpuntos(MenuInicial.jugador2,puntos,mano2);
             lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
 
             if(calcularfin()){
@@ -176,7 +176,7 @@ public class Juego extends AppCompatActivity {
         String val = dibujocarta(carta.getValor());
         val1.setText(val);
         pintarcarta(carta,carta1);
-        sumarpuntos(MenuInicial.jugador1,puntos);
+        sumarpuntos(MenuInicial.jugador1,puntos,mano1);
         lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
          carta = darcarta(mano2);
@@ -184,7 +184,7 @@ public class Juego extends AppCompatActivity {
          val = dibujocarta(carta.getValor());
         val7.setText(val);
         pintarcarta(carta,carta7);
-        sumarpuntos(MenuInicial.jugador2,puntos);
+        sumarpuntos(MenuInicial.jugador2,puntos,mano2);
         lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
 
          carta = darcarta(mano1);
@@ -192,7 +192,7 @@ public class Juego extends AppCompatActivity {
          val = dibujocarta(carta.getValor());
         val2.setText(val);
         pintarcarta(carta,carta2);
-        sumarpuntos(MenuInicial.jugador1,puntos);
+        sumarpuntos(MenuInicial.jugador1,puntos,mano1);
         lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
          carta = darcarta(mano2);
@@ -200,7 +200,7 @@ public class Juego extends AppCompatActivity {
          val = dibujocarta(carta.getValor());
         val8.setText(val);
         pintarcarta(carta,carta8);
-        sumarpuntos(MenuInicial.jugador2,puntos);
+        sumarpuntos(MenuInicial.jugador2,puntos,mano2);
         lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
 
 
@@ -300,13 +300,20 @@ public class Juego extends AppCompatActivity {
         Collections.shuffle(baraja);
     }
 
-    private void sumarpuntos(Player jugador, int puntos){
+    private void sumarpuntos(Player jugador, int puntos,ArrayList<Cartas> mano){
+
+        if(jugador.getPuntos()+puntos>21) {
+            for (int q = 0; q < mano.size(); q++) {
+                if (mano.get(q).getValor() == 1){jugador.setPuntos(jugador.getPuntos()-10);}
+            }
+        }
+
         jugador.setPuntos(jugador.getPuntos()+puntos) ;
     }
 
     private int valordelacarta(int numero,Player jugador,ArrayList<Cartas> mano){
         int valorcarta;
-        if(numero == 1){valorcarta = unoonce(jugador,mano);}
+        if(numero == 1){valorcarta = unoonce(jugador);}
         else if(numero == 11){valorcarta = 10;}
         else if(numero == 12){valorcarta = 10;}
         else if(numero == 13){valorcarta = 10;}
@@ -327,7 +334,7 @@ public class Juego extends AppCompatActivity {
 
 
     //ESTE METODO ES PARA ELGIR QUE VALOR TENDRA EL AS
-    public int unoonce(Player jugador,ArrayList<Cartas> mano){
+    public int unoonce(Player jugador){
         if(jugador.getPuntos()+ 11 <21 ){
 
             return 11;
@@ -337,11 +344,7 @@ public class Juego extends AppCompatActivity {
             return 11;
         }
         else
-        { if(jugador.getPuntos()+1>21) {
-            for (int q = 0; q < mano.size(); q++) {
-                if (mano.get(q).getValor() == 1){jugador.setPuntos(jugador.getPuntos()-10);}
-            }
-        }
+        {
             return 1;
         }
 

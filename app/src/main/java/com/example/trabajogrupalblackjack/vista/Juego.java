@@ -1,13 +1,17 @@
 package com.example.trabajogrupalblackjack.vista;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -73,7 +77,7 @@ public class Juego extends AppCompatActivity {
         prepararpartida();
         primerascartas();
         if(calcularfin()){
-            ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
+            ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2, this);
             guardardatosganador(ganador);
         }
 
@@ -86,7 +90,7 @@ public class Juego extends AppCompatActivity {
             lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
             if(calcularfin()){
-                ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
+                ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2, this);
                 guardardatosganador(ganador);
             }
             if(!MenuInicial.jugador2.getPlantado()) {
@@ -103,7 +107,7 @@ public class Juego extends AppCompatActivity {
             lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
 
             if(calcularfin()){
-                ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
+                ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2, this);
                 guardardatosganador(ganador);
             }
             if(!MenuInicial.jugador1.getPlantado()) {
@@ -116,7 +120,7 @@ public class Juego extends AppCompatActivity {
             if(!MenuInicial.jugador2.getPlantado()) {
                 MenuInicial.jugador1.setPlantado(true);
                 if(calcularfin()){
-                    ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
+                    ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2, this);
                     guardardatosganador(ganador);
                 }
                 disabletraspedir1();
@@ -127,7 +131,7 @@ public class Juego extends AppCompatActivity {
             if(!MenuInicial.jugador1.getPlantado()) {
                 MenuInicial.jugador2.setPlantado(true);
                 if(calcularfin()){
-                    ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
+                    ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2, this);
                     guardardatosganador(ganador);
                 }
                disabletraspedir2();
@@ -142,7 +146,7 @@ public class Juego extends AppCompatActivity {
              }else if(win.equals(MenuInicial.jugador2)){
             Metodos.creacionFicheroEstadisticas(this,win.toString());//METODO CSV
         }else{
-            alertasfinal("EMPATE",win);
+            alertasfinal("EMPATE",win, this);
         }
     }
 
@@ -356,7 +360,7 @@ public class Juego extends AppCompatActivity {
 
     }
 
-    private void alertasfinal(String msm,Player jugador){
+    private void alertasfinal(String msm,Player jugador, Context context){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -364,8 +368,16 @@ public class Juego extends AppCompatActivity {
         builder.setPositiveButton("VOLVER A JUGAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                prepararpartida();
-                primerascartas();
+                MenuInicial.jugador1.setPuntos(0);
+                MenuInicial.jugador1.setPlantado(false);
+                MenuInicial.jugador2.setPuntos(0);
+                MenuInicial.jugador2.setPlantado(false);
+
+                lblpuntos1.setText(String.valueOf(0));
+                lblpuntos2.setText(String.valueOf(0));
+
+                Intent intent = new Intent(context, Juego.class);
+                startActivity(intent);
             }
         });
 
@@ -380,19 +392,19 @@ public class Juego extends AppCompatActivity {
 
     }
 
-    private Player comprobarganador(Player jugador1, Player jugador2) {
+    private Player comprobarganador(Player jugador1, Player jugador2, Context context) {
         if (jugador1.getPuntos() > jugador2.getPuntos()) {
 
             if (jugador1.getPuntos() == 21) {
 
-                alertasfinal("ENORABUENA HAS CONSEGUIDO 21 PUNTOS", jugador1);
+                alertasfinal(" ENHORABUENA HAS CONSEGUIDO 21 PUNTOS", jugador1, context);
                 return jugador1;
 
             } else if (jugador1.getPuntos() < 21) {
-                alertasfinal("HAS GANADO", jugador1);
+                alertasfinal(" HAS GANADO", jugador1, context);
                 return jugador1;
             } else if (jugador1.getPuntos() > 21) {
-                alertasfinal("TE HAS PASADO DE PUNTOS", jugador1);
+                alertasfinal(" TE HAS PASADO DE PUNTOS", jugador1, context);
                 return jugador2;
 
             }
@@ -400,20 +412,20 @@ public class Juego extends AppCompatActivity {
 
             if (jugador2.getPuntos() == 21) {
 
-                alertasfinal("ENORABUENA HAS CONSEGUIDO 21 PUNTOS", jugador2);
+                alertasfinal(" ENHORABUENA HAS CONSEGUIDO 21 PUNTOS", jugador2, context);
                 return jugador2;
 
             } else if (jugador2.getPuntos() < 21) {
-                alertasfinal("HAS GANADO", jugador2);
+                alertasfinal(" HAS GANADO", jugador2, context);
                 return jugador2;
             } else if (jugador2.getPuntos() > 21) {
-                alertasfinal("TE HAS PASADO DE PUNTOS", jugador2);
+                alertasfinal(" TE HAS PASADO DE PUNTOS", jugador2, context);
                 return jugador1;
             }
 
         } else  {
             Player empate = new Player("Empate", true, 0);
-            alertasfinal("TE HAS PASADO DE PUNTOS", empate);
+            alertasfinal(" EMPATE", empate, context);
             return empate;
         }
 
@@ -456,6 +468,37 @@ public class Juego extends AppCompatActivity {
         val11 = findViewById(R.id.valor11);
         val12 = findViewById(R.id.valor12);
 
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    //ALERT DIALOG INSTRUCCIONES
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+
+        if(item.getItemId() == R.id.boton1){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("¿Cómo jugar?");
+            builder.setMessage(getString(R.string.info));
+
+            builder.setPositiveButton("Volver", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+            ;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

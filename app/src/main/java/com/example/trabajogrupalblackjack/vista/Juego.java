@@ -41,23 +41,45 @@ public class Juego extends AppCompatActivity {
     private ImageView carta10;
     private ImageView carta11;
     private ImageView carta12;
+    private TextView val1;
+    private TextView val2;
+    private TextView val3;
+    private TextView val4;
+    private TextView val5;
+    private TextView val6;
+    private TextView val7;
+    private TextView val8;
+    private TextView val9;
+    private TextView val10;
+    private TextView val11;
+    private TextView val12;
+
+
+    //DESPUES DE LOS CALCULAR FIN UN MENSAJE DEL GANADOR Y GUARDAR SUS DATOS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
         prepararpartida();
+        primerascartas();
+        if(calcularfin()){
+            ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
+            guardardatosganador(ganador);
+        }
 
         pedircartaplayer1.setOnClickListener(v->{
 
             int numero = sacarnumero();
             actualizarpool();
             int puntos = valordelacarta(numero, MenuInicial.jugador1);
+            mostrarnuevacartaj1(puntos);
             sumarpuntos(MenuInicial.jugador1,puntos);
             lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
             if(calcularfin()){
                 ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
+                guardardatosganador(ganador);
             }
             if(!MenuInicial.jugador2.getPlantado()) {
             disabletraspedir1();
@@ -69,10 +91,12 @@ public class Juego extends AppCompatActivity {
             int numero = sacarnumero();
             actualizarpool();
             int puntos = valordelacarta(numero,MenuInicial.jugador2);
+            mostrarnuevacartaj2(puntos);
             sumarpuntos(MenuInicial.jugador2,puntos);
             lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
             if(calcularfin()){
                 ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
+                guardardatosganador(ganador);
             }
             if(!MenuInicial.jugador1.getPlantado()) {
             disabletraspedir2();
@@ -84,6 +108,7 @@ public class Juego extends AppCompatActivity {
                 MenuInicial.jugador1.setPlantado(true);
                 if(calcularfin()){
                     ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
+                    guardardatosganador(ganador);
                 }
                 disabletraspedir1();
             }
@@ -94,10 +119,101 @@ public class Juego extends AppCompatActivity {
                 MenuInicial.jugador2.setPlantado(true);
                 if(calcularfin()){
                     ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
+                    guardardatosganador(ganador);
                 }
                disabletraspedir2();
             }
         });
+    }
+
+    private void guardardatosganador(Player win){
+        if(win.equals(MenuInicial.jugador1))
+        {
+            // METODO DEL CSV y MENSAJE EN ALERTDIALOG
+             }else if(win.equals(MenuInicial.jugador2)){
+            //METODO CSV
+        }else{
+            //SOLO MENSAJE DE DIALOG
+        }
+    }
+
+
+
+    private void primerascartas() {
+        int numero = sacarnumero();
+        val1.setText(String.valueOf(numero));
+        actualizarpool();
+        int puntos = valordelacarta(numero,MenuInicial.jugador1);
+        sumarpuntos(MenuInicial.jugador1,puntos);
+        lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
+
+         numero = sacarnumero();
+        val7.setText(String.valueOf(numero));
+        actualizarpool();
+         puntos = valordelacarta(numero,MenuInicial.jugador2);
+        sumarpuntos(MenuInicial.jugador2,puntos);
+        lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
+
+        numero = sacarnumero();
+        val2.setText(String.valueOf(numero));
+        actualizarpool();
+        puntos = valordelacarta(numero,MenuInicial.jugador1);
+        sumarpuntos(MenuInicial.jugador1,puntos);
+        lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
+
+        numero = sacarnumero();
+        val8.setText(String.valueOf(numero));
+        actualizarpool();
+        puntos = valordelacarta(numero,MenuInicial.jugador2);
+        sumarpuntos(MenuInicial.jugador2,puntos);
+        lblpuntos1.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
+
+    }
+
+
+
+    private void mostrarnuevacartaj1(int puntos) {
+
+        if(carta3.getVisibility()==View.INVISIBLE){
+            carta3.setVisibility(View.VISIBLE);
+            val3.setVisibility(View.VISIBLE);
+            val3.setText(String.valueOf(puntos));
+        } else  if(carta4.getVisibility()==View.INVISIBLE){
+            carta4.setVisibility(View.VISIBLE);
+            val4.setVisibility(View.VISIBLE);
+            val4.setText(String.valueOf(puntos));
+        }else  if(carta5.getVisibility()==View.INVISIBLE){
+            carta5.setVisibility(View.VISIBLE);
+            val5.setVisibility(View.VISIBLE);
+            val5.setText(String.valueOf(puntos));
+        }else  if(carta6.getVisibility()==View.INVISIBLE){
+            carta6.setVisibility(View.VISIBLE);
+            val6.setVisibility(View.VISIBLE);
+            val6.setText(String.valueOf(puntos));
+        }
+
+    }
+
+    private void mostrarnuevacartaj2(int puntos) {
+
+        if(carta9.getVisibility()==View.INVISIBLE){
+            carta9.setVisibility(View.VISIBLE);
+            val9.setVisibility(View.VISIBLE);
+            val9.setText(String.valueOf(puntos));
+        } else  if(carta10.getVisibility()==View.INVISIBLE){
+            carta10.setVisibility(View.VISIBLE);
+            val10.setVisibility(View.VISIBLE);
+            val10.setText(String.valueOf(puntos));
+        }else  if(carta11.getVisibility()==View.INVISIBLE){
+            carta11.setVisibility(View.VISIBLE);
+            val11.setVisibility(View.VISIBLE);
+            val11.setText(String.valueOf(puntos));
+        }else  if(carta12.getVisibility()==View.INVISIBLE){
+            carta12.setVisibility(View.VISIBLE);
+            val12.setVisibility(View.VISIBLE);
+            val12.setText(String.valueOf(puntos));
+        }
+
     }
 
     private void disabletraspedir2() {
@@ -213,17 +329,30 @@ public class Juego extends AppCompatActivity {
         lblpuntos1 = findViewById(R.id.valorjugador1);
         lblpuntos2 = findViewById(R.id.valorjugador2);
         carta1 = findViewById(R.id.primeracartaj1);
-        carta1 = findViewById(R.id.primeracartaj2);
-        carta1 = findViewById(R.id.primeracartaj3);
-        carta1 = findViewById(R.id.primeracartaj4);
-        carta1 = findViewById(R.id.primeracartaj5);
-        carta1 = findViewById(R.id.primeracartaj6);
-        carta1 = findViewById(R.id.primeracartaj7);
-        carta1 = findViewById(R.id.primeracartaj8);
-        carta1 = findViewById(R.id.primeracartaj9);
-        carta1 = findViewById(R.id.primeracartaj10);
-        carta1 = findViewById(R.id.primeracartaj11);
-        carta1 = findViewById(R.id.primeracartaj12);
+        carta2 = findViewById(R.id.primeracartaj2);
+        carta3 = findViewById(R.id.primeracartaj3);
+        carta4 = findViewById(R.id.primeracartaj4);
+        carta5 = findViewById(R.id.primeracartaj5);
+        carta6 = findViewById(R.id.primeracartaj6);
+        carta7 = findViewById(R.id.primeracartaj7);
+        carta8 = findViewById(R.id.primeracartaj8);
+        carta9 = findViewById(R.id.primeracartaj9);
+        carta10 = findViewById(R.id.primeracartaj10);
+        carta11 = findViewById(R.id.primeracartaj11);
+        carta12 = findViewById(R.id.primeracartaj12);
+        val1 = findViewById(R.id.valor1);
+        val2 = findViewById(R.id.valor2);
+        val3 = findViewById(R.id.valor3);
+        val4 = findViewById(R.id.valor4);
+        val5 = findViewById(R.id.valor5);
+        val6 = findViewById(R.id.valor6);
+        val7 = findViewById(R.id.valor7);
+        val8 = findViewById(R.id.valor8);
+        val9 = findViewById(R.id.valor9);
+        val10 = findViewById(R.id.valor10);
+        val11 = findViewById(R.id.valor11);
+        val12 = findViewById(R.id.valor12);
+
     }
 
 }

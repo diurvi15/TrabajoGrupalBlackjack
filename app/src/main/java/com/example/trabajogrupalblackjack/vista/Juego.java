@@ -25,6 +25,7 @@ import java.util.Collections;
 
 public class Juego extends AppCompatActivity {
 
+    public static String fecha;
     public  ArrayList<String> valores;
     private Button pedircartaplayer1;
     private Button pedircartaplayer2;
@@ -135,11 +136,11 @@ public class Juego extends AppCompatActivity {
     private void guardardatosganador(Player win){
         if(win.equals(MenuInicial.jugador1))
         {
-            // METODO DEL CSV y MENSAJE EN ALERTDIALOG
+           Metodos.creacionFicheroEstadisticas(this,win.toString()); // METODO DEL CSV y MENSAJE EN ALERTDIALOG
              }else if(win.equals(MenuInicial.jugador2)){
-            //METODO CSV
+            Metodos.creacionFicheroEstadisticas(this,win.toString());//METODO CSV
         }else{
-            //SOLO MENSAJE DE DIALOG
+            alertasfinal("EMPATE",win);
         }
     }
 
@@ -175,8 +176,6 @@ public class Juego extends AppCompatActivity {
         lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
 
     }
-
-
 
     private void mostrarnuevacartaj1(int puntos) {
 
@@ -305,75 +304,7 @@ public class Juego extends AppCompatActivity {
         }
         else if(MenuInicial.jugador1.getPuntos()>=21||MenuInicial.jugador2.getPuntos()>=21) {
 
-            //INDICAR QUE JUGADOR HA LLEGADO A 21 PUNTOS
-            /*if(MenuInicial.jugador1.getPuntos() == 21){
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                builder.setTitle(MenuInicial.jugador1.getNombre() + "ENHORABUENA HAS CONSEGUIDO 21 PUNTOS");
-                builder.setPositiveButton("VOLVER A JUGAR", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(getApplicationContext(), Juego.class);
-                        startActivity(intent);
-                    }
-                });
-
-                builder.setNegativeButton("VOLVER AL INICIO", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(getApplicationContext(), MenuInicial.class);
-                        startActivity(intent);
-                    }
-                });
-                builder.show();
-            } else if(MenuInicial.jugador2.getPuntos() == 21){
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-                builder.setTitle(MenuInicial.jugador2.getNombre() + "ENHORABUENA HAS CONSEGUIDO 21 PUNTOS");
-                builder.setPositiveButton("VOLVER A JUGAR", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        prepararpartida();
-                        primerascartas();
-                    }
-                });
-
-                builder.setNegativeButton("VOLVER AL INICIO", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(getApplicationContext(), MenuInicial.class);
-                        startActivity(intent);
-                    }
-                });
-                builder.show();
-            }*/
-
-
-            //INDICAR QUE JUGADOR SE HA PASADO DE PUNTOS EN EL ALERT DIALOG AL ACABAR LA PARTIDA
-            /*if (MenuInicial.jugador1.getPuntos() > 21){
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-                builder.setTitle(MenuInicial.jugador1.getNombre() + "TE HAS PASADO DE PUNTOS");
-                builder.setPositiveButton("VOLVER A JUGAR", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-                builder.show();
-            } else if(MenuInicial.jugador2.getPuntos() > 21){
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-                builder.setTitle(MenuInicial.jugador2.getNombre() + "TE HAS PASADO DE PUNTOS");
-                builder.setPositiveButton("VOLVER AL INICIO", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(getApplicationContext(), Juego.class);
-                        startActivity(intent);
-                    }
-                });
-                builder.show();
-            }*/
 
             return true;
         }
@@ -382,18 +313,70 @@ public class Juego extends AppCompatActivity {
 
     }
 
-    private Player comprobarganador(Player jugador1, Player jugador2) {
-        if(jugador1.getPuntos() > jugador2.getPuntos()){
-            if(jugador1.getPuntos() - 21 <=0){return jugador1;}
-            else if(jugador2.getPuntos() - 21 <=0){return jugador2;}
-            else{return new Player("Empate",true,0);}
-        }else if(jugador1.getPuntos()< jugador2.getPuntos()){
-            if(jugador1.getPuntos() - 21 <=0){return jugador1;}
-            else if(jugador2.getPuntos() - 21 <=0){return jugador2;}
-            else{return new Player("Empate",true,0);}
-        }else{return new Player("Empate",true,0);}
+    private void alertasfinal(String msm,Player jugador){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(jugador.getNombre() + msm);
+        builder.setPositiveButton("VOLVER A JUGAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                prepararpartida();
+                primerascartas();
+            }
+        });
+
+        builder.setNegativeButton("VOLVER AL INICIO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(getApplicationContext(), MenuInicial.class);
+                startActivity(intent);
+            }
+        });
+        builder.show();
+
     }
 
+    private Player comprobarganador(Player jugador1, Player jugador2) {
+        if (jugador1.getPuntos() > jugador2.getPuntos()) {
+
+            if (jugador1.getPuntos() == 21) {
+
+                alertasfinal("ENORABUENA HAS CONSEGUIDO 21 PUNTOS", jugador1);
+                return jugador1;
+
+            } else if (jugador1.getPuntos() < 21) {
+                alertasfinal("HAS GANADO", jugador1);
+                return jugador1;
+            } else if (jugador1.getPuntos() > 21) {
+                alertasfinal("TE HAS PASADO DE PUNTOS", jugador1);
+                return jugador2;
+
+            }
+        } else if (jugador1.getPuntos() < jugador2.getPuntos()) {
+
+            if (jugador2.getPuntos() == 21) {
+
+                alertasfinal("ENORABUENA HAS CONSEGUIDO 21 PUNTOS", jugador2);
+                return jugador2;
+
+            } else if (jugador2.getPuntos() < 21) {
+                alertasfinal("HAS GANADO", jugador2);
+                return jugador2;
+            } else if (jugador2.getPuntos() > 21) {
+                alertasfinal("TE HAS PASADO DE PUNTOS", jugador2);
+                return jugador1;
+            }
+
+        } else  {
+            Player empate = new Player("Empate", true, 0);
+            alertasfinal("TE HAS PASADO DE PUNTOS", empate);
+            return empate;
+        }
+
+        return null;
+
+    }
     //ESTE METODO IRA DESPUES EN LA CARPETA CONTROLADOR
     //SIRVE PARA SACAR UN NUMERO ALEATORIO DE EL ARRAY DE VALORES
     private int sacarnumero(){

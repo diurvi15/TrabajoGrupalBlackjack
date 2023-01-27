@@ -3,28 +3,27 @@ package com.example.trabajogrupalblackjack.modelo;
 import java.util.List;
 
 public class Cartas {
-    List<Integer> valorCartas;
-    List<String> palos;
+    int valor;
+    String palo;
 
-    public Cartas(List<Integer> valorCartas, List<String> palos) {
-        this.valorCartas = valorCartas;
-        this.palos = palos;
+    public Cartas(int valor, String palo) {
+        this.valor = valor;
+        this.palo = palo;
     }
 
-    public List<Integer> getValorCartas() {
-        return valorCartas;
+    public int getValor() {
+        return valor;
     }
 
-    public void setValorCartas(List<Integer> valorCartas) {
-        this.valorCartas = valorCartas;
+    public void setValor(int valor) {
+        this.valor = valor;
     }
 
-    public List<String> getPalos() {
-        return palos;
+    public String getPalo() {
+        return palo;
     }
 
-    public void setPalos(List<String> palos) {
-        this.palos = palos;
+    public void setPalo(String palo) {
+        this.palo = palo;
     }
-
 }

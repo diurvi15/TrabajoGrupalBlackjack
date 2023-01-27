@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.trabajogrupalblackjack.R;
 import com.example.trabajogrupalblackjack.controlador.Metodos;
+import com.example.trabajogrupalblackjack.modelo.Cartas;
 import com.example.trabajogrupalblackjack.modelo.Player;
 
 import java.time.LocalDate;
@@ -25,8 +26,9 @@ import java.util.Collections;
 
 public class Juego extends AppCompatActivity {
 
-    public static String fecha;
-    public  ArrayList<String> valores;
+
+   // public  ArrayList<String> valores;
+    public  ArrayList<Cartas> baraja;
     private Button pedircartaplayer1;
     private Button pedircartaplayer2;
     private Button plantarseplayer1;
@@ -61,7 +63,7 @@ public class Juego extends AppCompatActivity {
     private TextView val12;
 
 
-    //DESPUES DE LOS CALCULAR FIN UN MENSAJE DEL GANADOR Y GUARDAR SUS DATOS
+
     //PONER IMAGENES DE PALOS PARA LAS CARTAS
 
     @Override
@@ -77,10 +79,9 @@ public class Juego extends AppCompatActivity {
 
         pedircartaplayer1.setOnClickListener(v->{
 
-            int numero = sacarnumero();
-            actualizarpool();
-            int puntos = valordelacarta(numero, MenuInicial.jugador1);
-            mostrarnuevacartaj1(puntos);
+            Cartas carta = darcarta();
+            int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1);
+            mostrarnuevacartaj1(carta);
             sumarpuntos(MenuInicial.jugador1,puntos);
             lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
@@ -95,20 +96,21 @@ public class Juego extends AppCompatActivity {
 
         pedircartaplayer2.setOnClickListener(v->{
 
-            int numero = sacarnumero();
-            actualizarpool();
-            int puntos = valordelacarta(numero,MenuInicial.jugador2);
-            mostrarnuevacartaj2(puntos);
+            Cartas carta = darcarta();
+            int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2);
+            mostrarnuevacartaj2(carta);
             sumarpuntos(MenuInicial.jugador2,puntos);
             lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
+
             if(calcularfin()){
                 ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2);
                 guardardatosganador(ganador);
             }
             if(!MenuInicial.jugador1.getPlantado()) {
-            disabletraspedir2();
+                disabletraspedir2();
             }
         });
+
 
         plantarseplayer1.setOnClickListener(v->{
             if(!MenuInicial.jugador2.getPlantado()) {
@@ -144,79 +146,110 @@ public class Juego extends AppCompatActivity {
         }
     }
 
+    private Cartas darcarta(){
+   Cartas carta= baraja.get(0);
+    baraja.remove(0);
+     return carta;
+}
+
+    private void pintarcarta(Cartas carta,ImageView fondo){
+
+        if(carta.getPalo().equals("brujula")){ fondo.setImageResource(R.drawable.cartabrujula);}
+        if(carta.getPalo().equals("huesos")){ fondo.setImageResource(R.drawable.cartahuesos);}
+        if(carta.getPalo().equals("barco")){ fondo.setImageResource(R.drawable.cartabarco);}
+        if(carta.getPalo().equals("fruta")){ fondo.setImageResource(R.drawable.cartafruta);}
+
+
+}
 
 
     private void primerascartas() {
-        int numero = sacarnumero();
-        val1.setText(String.valueOf(numero));
-        actualizarpool();
-        int puntos = valordelacarta(numero,MenuInicial.jugador1);
+
+        Cartas carta = darcarta();
+        int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1);
+        String val = dibujocarta(carta.getValor());
+        val1.setText(val);
+        pintarcarta(carta,carta1);
         sumarpuntos(MenuInicial.jugador1,puntos);
         lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
-        numero = sacarnumero();
-        val7.setText(String.valueOf(numero));
-        actualizarpool();
-         puntos = valordelacarta(numero,MenuInicial.jugador2);
+         carta = darcarta();
+         puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2);
+         val = dibujocarta(carta.getValor());
+        val7.setText(val);
+        pintarcarta(carta,carta7);
         sumarpuntos(MenuInicial.jugador2,puntos);
         lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
 
-        numero = sacarnumero();
-        val2.setText(String.valueOf(numero));
-        actualizarpool();
-        puntos = valordelacarta(numero,MenuInicial.jugador1);
+         carta = darcarta();
+         puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1);
+         val = dibujocarta(carta.getValor());
+        val2.setText(val);
+        pintarcarta(carta,carta2);
         sumarpuntos(MenuInicial.jugador1,puntos);
         lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
-        numero = sacarnumero();
-        val8.setText(String.valueOf(numero));
-        actualizarpool();
-        puntos = valordelacarta(numero,MenuInicial.jugador2);
+         carta = darcarta();
+         puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2);
+         val = dibujocarta(carta.getValor());
+        val8.setText(val);
+        pintarcarta(carta,carta8);
         sumarpuntos(MenuInicial.jugador2,puntos);
         lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
+
 
     }
 
-    private void mostrarnuevacartaj1(int puntos) {
+    private void mostrarnuevacartaj1(Cartas carta) {
 
+        String val = dibujocarta(carta.getValor());
         if(carta3.getVisibility()==View.INVISIBLE){
             carta3.setVisibility(View.VISIBLE);
             val3.setVisibility(View.VISIBLE);
-            val3.setText(String.valueOf(puntos));
+            val3.setText(String.valueOf(val));
+            pintarcarta(carta,carta3);
         } else  if(carta4.getVisibility()==View.INVISIBLE){
             carta4.setVisibility(View.VISIBLE);
             val4.setVisibility(View.VISIBLE);
-            val4.setText(String.valueOf(puntos));
+            val4.setText(String.valueOf(val));
+            pintarcarta(carta,carta4);
         }else  if(carta5.getVisibility()==View.INVISIBLE){
             carta5.setVisibility(View.VISIBLE);
             val5.setVisibility(View.VISIBLE);
-            val5.setText(String.valueOf(puntos));
+            val5.setText(String.valueOf(val));
+            pintarcarta(carta,carta5);
         }else  if(carta6.getVisibility()==View.INVISIBLE){
             carta6.setVisibility(View.VISIBLE);
             val6.setVisibility(View.VISIBLE);
-            val6.setText(String.valueOf(puntos));
+            val6.setText(String.valueOf(val));
+            pintarcarta(carta,carta6);
         }
 
     }
 
-    private void mostrarnuevacartaj2(int puntos) {
+    private void mostrarnuevacartaj2(Cartas carta) {
 
+        String val = dibujocarta(carta.getValor());
         if(carta9.getVisibility()==View.INVISIBLE){
             carta9.setVisibility(View.VISIBLE);
             val9.setVisibility(View.VISIBLE);
-            val9.setText(String.valueOf(puntos));
+            val9.setText(String.valueOf(val));
+            pintarcarta(carta,carta9);
         } else  if(carta10.getVisibility()==View.INVISIBLE){
             carta10.setVisibility(View.VISIBLE);
             val10.setVisibility(View.VISIBLE);
-            val10.setText(String.valueOf(puntos));
+            val10.setText(String.valueOf(val));
+            pintarcarta(carta,carta10);
         }else  if(carta11.getVisibility()==View.INVISIBLE){
             carta11.setVisibility(View.VISIBLE);
             val11.setVisibility(View.VISIBLE);
-            val11.setText(String.valueOf(puntos));
+            val11.setText(String.valueOf(val));
+            pintarcarta(carta,carta11);
         }else  if(carta12.getVisibility()==View.INVISIBLE){
             carta12.setVisibility(View.VISIBLE);
             val12.setVisibility(View.VISIBLE);
-            val12.setText(String.valueOf(puntos));
+            val12.setText(String.valueOf(val));
+            pintarcarta(carta,carta12);
         }
 
     }
@@ -227,6 +260,7 @@ public class Juego extends AppCompatActivity {
         pedircartaplayer1.setEnabled(true);
         plantarseplayer1.setEnabled(true);
     }
+
     private void disabletraspedir1() {
         pedircartaplayer2.setEnabled(true);
         plantarseplayer2.setEnabled(true);
@@ -242,12 +276,26 @@ public class Juego extends AppCompatActivity {
     }
 
     private void cargarbaraja() {
-        valores = new ArrayList<>(52);
+
+       ArrayList<String> valores = new ArrayList<>(52);
         String linea = getString(R.string.valorcartas);
         String[] trozos =linea.split(";");
         valores.addAll(Arrays.asList(trozos));
 
-        Collections.shuffle(valores);
+        for(int q = 1;q<=52;q++){
+
+            do{baraja.add(new Cartas(Integer.parseInt(valores.get(q)),"brujula"));}
+            while(q<=13);
+            do{baraja.add(new Cartas(Integer.parseInt(valores.get(q)),"huesos"));}
+            while(q<=26 && q > 13);
+            do{baraja.add(new Cartas(Integer.parseInt(valores.get(q)),"barco"));}
+            while(q<=39 && q > 26);
+            do{baraja.add(new Cartas(Integer.parseInt(valores.get(q)),"fruta"));}
+            while(q<=52 && q > 39);
+
+        }
+
+        Collections.shuffle(baraja);
     }
 
     private void sumarpuntos(Player jugador, int puntos){
@@ -263,18 +311,21 @@ public class Juego extends AppCompatActivity {
         else {valorcarta = numero;}
         return valorcarta;
     }
+    private String dibujocarta(int valor){
+
+        String val="";
+        if(valor == 1){}
+        else if(valor == 11){ val="J";}
+        else if(valor == 12){val="Q";}
+        else if(valor == 13){val = "K";}
+        else {val = String.valueOf(valor);}
+        return val;
+
+    }
 
     //ESTE METODO IRA DESPUES EN LA CARPETA CONTROLADOR
     //SIRVE PARA BORRAR VALORES DEL ARRAY DE VALORES QUE YA SE HAN USADO
-    public void actualizarpool(){
-      /*  String num = String.valueOf(numero);
-        for(int q = 0;q<valores.size();q++){
-            if(valores.get(q).equals(num)){
-                valores.remove(q);
-                break;
-            } }*/
-        valores.remove(0);
-    }
+
 
     //ESTE METODO ES PARA ELGIR QUE VALOR TENDRA EL AS
     public int unoonce(Player jugador){
@@ -298,13 +349,9 @@ public class Juego extends AppCompatActivity {
                 ||
                 MenuInicial.jugador2.getPlantado() && MenuInicial.jugador1.getPuntos() > MenuInicial.jugador2.getPuntos())
         {
-
-
             return true;
         }
         else if(MenuInicial.jugador1.getPuntos()>=21||MenuInicial.jugador2.getPuntos()>=21) {
-
-
 
             return true;
         }
@@ -379,12 +426,7 @@ public class Juego extends AppCompatActivity {
     }
     //ESTE METODO IRA DESPUES EN LA CARPETA CONTROLADOR
     //SIRVE PARA SACAR UN NUMERO ALEATORIO DE EL ARRAY DE VALORES
-    private int sacarnumero(){
 
-        //int aleatorio = (int) Math.random()*13+1; //ESTA FORMULA HAY Q RETOCARLA PARA Q VAYA DEL 1 A 13
-
-        return Integer.parseInt(valores.get(0));
-    }
 
     private void recogerControles(){
         pedircartaplayer1 = findViewById(R.id.j1pedircarta);

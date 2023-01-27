@@ -66,9 +66,8 @@ public class Juego extends AppCompatActivity {
     private TextView val11;
     private TextView val12;
 
-
-
-    //PONER IMAGENES DE PALOS PARA LAS CARTAS
+    //SI EL 1 SALE EN LAS 2 PRIMERAS CARTAS DA FALLO
+    //ALERT DIALOG ELEGIR VALOR 1 U 11
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -314,8 +313,8 @@ public class Juego extends AppCompatActivity {
     private String dibujocarta(int valor){
 
         String val="";
-        if(valor == 1){}
-        else if(valor == 11){ val="J";}
+
+        if(valor == 11){ val="J";}
         else if(valor == 12){val="Q";}
         else if(valor == 13){val = "K";}
         else {val = String.valueOf(valor);}

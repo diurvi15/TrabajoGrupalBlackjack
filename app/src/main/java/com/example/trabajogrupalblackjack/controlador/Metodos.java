@@ -23,7 +23,7 @@ public class Metodos {
     public static void creacionFicheroEstadisticas(Context context, String obj){
         try(FileOutputStream fos = context.openFileOutput("estadisticas.csv", Context.MODE_APPEND);
             PrintWriter pw = new PrintWriter(fos)){
-            pw.println(obj);
+            pw.println(obj + ";" + conseguirFechaActual());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

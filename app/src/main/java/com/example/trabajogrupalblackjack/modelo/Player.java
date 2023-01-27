@@ -42,7 +42,6 @@ public class Player implements Serializable {
     @Override
     public String toString() {
         return nombre + ";" +
-                 plantado + ";" +
                  puntos;
     }
 }

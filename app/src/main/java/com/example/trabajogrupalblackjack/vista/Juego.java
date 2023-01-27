@@ -1,9 +1,12 @@
 package com.example.trabajogrupalblackjack.vista;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -293,9 +296,98 @@ public class Juego extends AppCompatActivity {
         if(MenuInicial.jugador1.getPlantado() && MenuInicial.jugador2.getPuntos() > MenuInicial.jugador1.getPuntos()
                 ||
                 MenuInicial.jugador2.getPlantado() && MenuInicial.jugador1.getPuntos() > MenuInicial.jugador2.getPuntos())
-        {return true;}
-        else if(MenuInicial.jugador1.getPuntos()>=21||MenuInicial.jugador2.getPuntos()>=21)
-        {return true;}
+        {
+
+
+            return true;
+        }
+        else if(MenuInicial.jugador1.getPuntos()>=21||MenuInicial.jugador2.getPuntos()>=21) {
+
+            //INDICAR QUE JUGADOR HA LLEGADO A 21 PUNTOS
+            /*if(MenuInicial.jugador1.getPuntos() == 21){
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                LayoutInflater inflater = getLayoutInflater();
+                View view = inflater.inflate(R.layout.dialog_finalpartida, null);
+                builder.setView(view);
+                builder.setTitle(MenuInicial.jugador1.getNombre() + "ENHORABUENA HAS CONSEGUIDO 21 PUNTOS");
+                builder.setPositiveButton("VOLVER A JUGAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(getApplicationContext(), Juego.class);
+                        startActivity(intent);
+                    }
+                });
+
+                builder.setNegativeButton("VOLVER AL INICIO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(getApplicationContext(), MenuInicial.class);
+                        startActivity(intent);
+                    }
+                });
+                builder.show();
+            } else if(MenuInicial.jugador2.getPuntos() == 21){
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                LayoutInflater inflater = getLayoutInflater();
+                View view = inflater.inflate(R.layout.dialog_finalpartida, null);
+                builder.setView(view);
+                builder.setTitle(MenuInicial.jugador2.getNombre() + "ENHORABUENA HAS CONSEGUIDO 21 PUNTOS");
+                builder.setPositiveButton("VOLVER A JUGAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(getApplicationContext(), Juego.class);
+                        startActivity(intent);
+                    }
+                });
+
+                builder.setNegativeButton("VOLVER AL INICIO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(getApplicationContext(), MenuInicial.class);
+                        startActivity(intent);
+                    }
+                });
+                builder.show();
+            }*/
+
+
+            //INDICAR QUE JUGADOR SE HA PASADO DE PUNTOS EN EL ALERT DIALOG AL ACABAR LA PARTIDA
+            if (MenuInicial.jugador1.getPuntos() > 21){
+                /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                LayoutInflater inflater = getLayoutInflater();
+                View view = inflater.inflate(R.layout.dialog_finalpartida, null);
+                builder.setView(view);
+                builder.setTitle(MenuInicial.jugador1.getNombre() + "TE HAS PASADO DE PUNTOS");
+                builder.setPositiveButton("VOLVER A JUGAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(getApplicationContext(), Juego.class);
+                        startActivity(intent);
+                    }
+                });
+                builder.show();
+            } else if(MenuInicial.jugador2.getPuntos() > 21){
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                LayoutInflater inflater = getLayoutInflater();
+                View view = inflater.inflate(R.layout.dialog_finalpartida, null);
+                builder.setView(view);
+                builder.setTitle(MenuInicial.jugador2.getNombre() + "TE HAS PASADO DE PUNTOS");
+                builder.setPositiveButton("VOLVER AL INICIO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(getApplicationContext(), Juego.class);
+                        startActivity(intent);
+                    }
+                });
+                builder.show();*/
+            }
+
+            return true;
+        }
 
         else{return false;}
 

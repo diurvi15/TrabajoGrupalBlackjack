@@ -58,7 +58,7 @@ public class Metodos {
     public static String conseguirFechaActual() {
         Date fecha = Date.from(Instant.now());
 
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy/HH:mm:ss");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
         return sdf.format(fecha);
     }

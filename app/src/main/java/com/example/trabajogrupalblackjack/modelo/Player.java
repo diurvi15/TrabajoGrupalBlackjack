@@ -38,4 +38,11 @@ public class Player implements Serializable {
     public void setPlantado(Boolean plantado) {
         this.plantado = plantado;
     }
+
+    @Override
+    public String toString() {
+        return nombre + ";" +
+                 plantado + ";" +
+                 puntos;
+    }
 }

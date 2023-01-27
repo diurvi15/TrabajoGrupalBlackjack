@@ -56,6 +56,7 @@ public class Juego extends AppCompatActivity {
 
 
     //DESPUES DE LOS CALCULAR FIN UN MENSAJE DEL GANADOR Y GUARDAR SUS DATOS
+    //PONER IMAGENES DE PALOS PARA LAS CARTAS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +148,7 @@ public class Juego extends AppCompatActivity {
         sumarpuntos(MenuInicial.jugador1,puntos);
         lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
-         numero = sacarnumero();
+        numero = sacarnumero();
         val7.setText(String.valueOf(numero));
         actualizarpool();
          puntos = valordelacarta(numero,MenuInicial.jugador2);
@@ -166,7 +167,7 @@ public class Juego extends AppCompatActivity {
         actualizarpool();
         puntos = valordelacarta(numero,MenuInicial.jugador2);
         sumarpuntos(MenuInicial.jugador2,puntos);
-        lblpuntos1.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
+        lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
 
     }
 

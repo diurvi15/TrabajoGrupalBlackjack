@@ -400,7 +400,8 @@ public class Juego extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MenuInicial.class);
                 startActivity(intent);
             }
-        });
+        })
+                .setOnCancelListener(v->{finish();});
         builder.show();
 
     }

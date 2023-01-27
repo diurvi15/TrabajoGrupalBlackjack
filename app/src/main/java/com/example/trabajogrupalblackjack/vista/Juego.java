@@ -14,8 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.trabajogrupalblackjack.R;
+import com.example.trabajogrupalblackjack.controlador.Metodos;
 import com.example.trabajogrupalblackjack.modelo.Player;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -307,9 +309,6 @@ public class Juego extends AppCompatActivity {
             /*if(MenuInicial.jugador1.getPuntos() == 21){
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                LayoutInflater inflater = getLayoutInflater();
-                View view = inflater.inflate(R.layout.dialog_finalpartida, null);
-                builder.setView(view);
                 builder.setTitle(MenuInicial.jugador1.getNombre() + "ENHORABUENA HAS CONSEGUIDO 21 PUNTOS");
                 builder.setPositiveButton("VOLVER A JUGAR", new DialogInterface.OnClickListener() {
                     @Override
@@ -330,15 +329,12 @@ public class Juego extends AppCompatActivity {
             } else if(MenuInicial.jugador2.getPuntos() == 21){
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                LayoutInflater inflater = getLayoutInflater();
-                View view = inflater.inflate(R.layout.dialog_finalpartida, null);
-                builder.setView(view);
                 builder.setTitle(MenuInicial.jugador2.getNombre() + "ENHORABUENA HAS CONSEGUIDO 21 PUNTOS");
                 builder.setPositiveButton("VOLVER A JUGAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(getApplicationContext(), Juego.class);
-                        startActivity(intent);
+                        prepararpartida();
+                        primerascartas();
                     }
                 });
 
@@ -354,27 +350,20 @@ public class Juego extends AppCompatActivity {
 
 
             //INDICAR QUE JUGADOR SE HA PASADO DE PUNTOS EN EL ALERT DIALOG AL ACABAR LA PARTIDA
-            if (MenuInicial.jugador1.getPuntos() > 21){
-                /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            /*if (MenuInicial.jugador1.getPuntos() > 21){
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                LayoutInflater inflater = getLayoutInflater();
-                View view = inflater.inflate(R.layout.dialog_finalpartida, null);
-                builder.setView(view);
                 builder.setTitle(MenuInicial.jugador1.getNombre() + "TE HAS PASADO DE PUNTOS");
                 builder.setPositiveButton("VOLVER A JUGAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(getApplicationContext(), Juego.class);
-                        startActivity(intent);
+
                     }
                 });
                 builder.show();
             } else if(MenuInicial.jugador2.getPuntos() > 21){
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                LayoutInflater inflater = getLayoutInflater();
-                View view = inflater.inflate(R.layout.dialog_finalpartida, null);
-                builder.setView(view);
                 builder.setTitle(MenuInicial.jugador2.getNombre() + "TE HAS PASADO DE PUNTOS");
                 builder.setPositiveButton("VOLVER AL INICIO", new DialogInterface.OnClickListener() {
                     @Override
@@ -383,8 +372,8 @@ public class Juego extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-                builder.show();*/
-            }
+                builder.show();
+            }*/
 
             return true;
         }

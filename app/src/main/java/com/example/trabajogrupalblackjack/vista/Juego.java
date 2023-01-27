@@ -31,7 +31,8 @@ import java.util.Collections;
 public class Juego extends AppCompatActivity {
 
 
-   // public  ArrayList<String> valores;
+    public  ArrayList<Cartas> mano1 = new ArrayList<>();
+    public  ArrayList<Cartas> mano2= new ArrayList<>();
     public  ArrayList<Cartas> baraja = new ArrayList<>(51);
     private Button pedircartaplayer1;
     private Button pedircartaplayer2;
@@ -83,8 +84,8 @@ public class Juego extends AppCompatActivity {
 
         pedircartaplayer1.setOnClickListener(v->{
 
-            Cartas carta = darcarta();
-            int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1);
+            Cartas carta = darcarta(mano1);
+            int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1,mano1);
             mostrarnuevacartaj1(carta);
             sumarpuntos(MenuInicial.jugador1,puntos);
             lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
@@ -100,8 +101,8 @@ public class Juego extends AppCompatActivity {
 
         pedircartaplayer2.setOnClickListener(v->{
 
-            Cartas carta = darcarta();
-            int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2);
+            Cartas carta = darcarta(mano2);
+            int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2,mano2);
             mostrarnuevacartaj2(carta);
             sumarpuntos(MenuInicial.jugador2,puntos);
             lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
@@ -150,8 +151,9 @@ public class Juego extends AppCompatActivity {
         }
     }
 
-    private Cartas darcarta(){
+    private Cartas darcarta(ArrayList<Cartas> mano){
    Cartas carta= baraja.get(0);
+   mano.add(carta);
     baraja.remove(0);
      return carta;
 }
@@ -169,32 +171,32 @@ public class Juego extends AppCompatActivity {
 
     private void primerascartas() {
 
-        Cartas carta = darcarta();
-        int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1);
+        Cartas carta = darcarta(mano1);
+        int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1,mano1);
         String val = dibujocarta(carta.getValor());
         val1.setText(val);
         pintarcarta(carta,carta1);
         sumarpuntos(MenuInicial.jugador1,puntos);
         lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
-         carta = darcarta();
-         puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2);
+         carta = darcarta(mano2);
+         puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2,mano2);
          val = dibujocarta(carta.getValor());
         val7.setText(val);
         pintarcarta(carta,carta7);
         sumarpuntos(MenuInicial.jugador2,puntos);
         lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
 
-         carta = darcarta();
-         puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1);
+         carta = darcarta(mano1);
+         puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1,mano1);
          val = dibujocarta(carta.getValor());
         val2.setText(val);
         pintarcarta(carta,carta2);
         sumarpuntos(MenuInicial.jugador1,puntos);
         lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
-         carta = darcarta();
-         puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2);
+         carta = darcarta(mano2);
+         puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2,mano2);
          val = dibujocarta(carta.getValor());
         val8.setText(val);
         pintarcarta(carta,carta8);
@@ -210,22 +212,22 @@ public class Juego extends AppCompatActivity {
         if(carta3.getVisibility()==View.INVISIBLE){
             carta3.setVisibility(View.VISIBLE);
             val3.setVisibility(View.VISIBLE);
-            val3.setText(String.valueOf(val));
+            val3.setText(val);
             pintarcarta(carta,carta3);
         } else  if(carta4.getVisibility()==View.INVISIBLE){
             carta4.setVisibility(View.VISIBLE);
             val4.setVisibility(View.VISIBLE);
-            val4.setText(String.valueOf(val));
+            val4.setText(val);
             pintarcarta(carta,carta4);
         }else  if(carta5.getVisibility()==View.INVISIBLE){
             carta5.setVisibility(View.VISIBLE);
             val5.setVisibility(View.VISIBLE);
-            val5.setText(String.valueOf(val));
+            val5.setText(val);
             pintarcarta(carta,carta5);
         }else  if(carta6.getVisibility()==View.INVISIBLE){
             carta6.setVisibility(View.VISIBLE);
             val6.setVisibility(View.VISIBLE);
-            val6.setText(String.valueOf(val));
+            val6.setText(val);
             pintarcarta(carta,carta6);
         }
 
@@ -237,22 +239,22 @@ public class Juego extends AppCompatActivity {
         if(carta9.getVisibility()==View.INVISIBLE){
             carta9.setVisibility(View.VISIBLE);
             val9.setVisibility(View.VISIBLE);
-            val9.setText(String.valueOf(val));
+            val9.setText(val);
             pintarcarta(carta,carta9);
         } else  if(carta10.getVisibility()==View.INVISIBLE){
             carta10.setVisibility(View.VISIBLE);
             val10.setVisibility(View.VISIBLE);
-            val10.setText(String.valueOf(val));
+            val10.setText(val);
             pintarcarta(carta,carta10);
         }else  if(carta11.getVisibility()==View.INVISIBLE){
             carta11.setVisibility(View.VISIBLE);
             val11.setVisibility(View.VISIBLE);
-            val11.setText(String.valueOf(val));
+            val11.setText(val);
             pintarcarta(carta,carta11);
         }else  if(carta12.getVisibility()==View.INVISIBLE){
             carta12.setVisibility(View.VISIBLE);
             val12.setVisibility(View.VISIBLE);
-            val12.setText(String.valueOf(val));
+            val12.setText(val);
             pintarcarta(carta,carta12);
         }
 
@@ -302,9 +304,9 @@ public class Juego extends AppCompatActivity {
         jugador.setPuntos(jugador.getPuntos()+puntos) ;
     }
 
-    private int valordelacarta(int numero,Player jugador){
+    private int valordelacarta(int numero,Player jugador,ArrayList<Cartas> mano){
         int valorcarta;
-        if(numero == 1){valorcarta = unoonce(jugador);}
+        if(numero == 1){valorcarta = unoonce(jugador,mano);}
         else if(numero == 11){valorcarta = 10;}
         else if(numero == 12){valorcarta = 10;}
         else if(numero == 13){valorcarta = 10;}
@@ -323,23 +325,26 @@ public class Juego extends AppCompatActivity {
 
     }
 
-    //ESTE METODO IRA DESPUES EN LA CARPETA CONTROLADOR
-    //SIRVE PARA BORRAR VALORES DEL ARRAY DE VALORES QUE YA SE HAN USADO
-
 
     //ESTE METODO ES PARA ELGIR QUE VALOR TENDRA EL AS
-    public int unoonce(Player jugador){
+    public int unoonce(Player jugador,ArrayList<Cartas> mano){
         if(jugador.getPuntos()+ 11 <21 ){
-            //AQUI VA UN ALERT DIALOG PARA ELEGIR 1 o 11
+
+            return 11;
+
         }else if(jugador.getPuntos() + 11 == 21)
         {
             return 11;
         }
         else
-        {
+        { if(jugador.getPuntos()+1>21) {
+            for (int q = 0; q < mano.size(); q++) {
+                if (mano.get(q).getValor() == 1){jugador.setPuntos(jugador.getPuntos()-10);}
+            }
+        }
             return 1;
         }
-        return 1;
+
     }
 
     //ESTE METODO IRA DESPUES EN LA CARPETA CONTROLADOR

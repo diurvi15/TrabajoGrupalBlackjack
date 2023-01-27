@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,17 +21,15 @@ import com.example.trabajogrupalblackjack.controlador.Metodos;
 import com.example.trabajogrupalblackjack.modelo.Cartas;
 import com.example.trabajogrupalblackjack.modelo.Player;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 
 public class Juego extends AppCompatActivity {
 
 
-    public  ArrayList<Cartas> mano1 = new ArrayList<>();
-    public  ArrayList<Cartas> mano2= new ArrayList<>();
+    public  ArrayList<Integer> mano1 = new ArrayList<>();
+    public  ArrayList<Integer> mano2= new ArrayList<>();
     public  ArrayList<Cartas> baraja = new ArrayList<>(51);
     private Button pedircartaplayer1;
     private Button pedircartaplayer2;
@@ -84,8 +81,9 @@ public class Juego extends AppCompatActivity {
 
         pedircartaplayer1.setOnClickListener(v->{
 
-            Cartas carta = darcarta(mano1);
-            int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1,mano1);
+            Cartas carta = darcarta();
+            int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1);
+            mano1.add(puntos);
             mostrarnuevacartaj1(carta);
             sumarpuntos(MenuInicial.jugador1,puntos,mano1);
             lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
@@ -101,8 +99,9 @@ public class Juego extends AppCompatActivity {
 
         pedircartaplayer2.setOnClickListener(v->{
 
-            Cartas carta = darcarta(mano2);
-            int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2,mano2);
+            Cartas carta = darcarta();
+            int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2);
+            mano2.add(puntos);
             mostrarnuevacartaj2(carta);
             sumarpuntos(MenuInicial.jugador2,puntos,mano2);
             lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
@@ -151,9 +150,9 @@ public class Juego extends AppCompatActivity {
         }
     }
 
-    private Cartas darcarta(ArrayList<Cartas> mano){
+    private Cartas darcarta(){
    Cartas carta= baraja.get(0);
-   mano.add(carta);
+
     baraja.remove(0);
      return carta;
 }
@@ -171,32 +170,36 @@ public class Juego extends AppCompatActivity {
 
     private void primerascartas() {
 
-        Cartas carta = darcarta(mano1);
-        int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1,mano1);
+        Cartas carta = darcarta();
+        int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1);
+        mano1.add(puntos);
         String val = dibujocarta(carta.getValor());
         val1.setText(val);
         pintarcarta(carta,carta1);
         sumarpuntos(MenuInicial.jugador1,puntos,mano1);
         lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
-         carta = darcarta(mano2);
-         puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2,mano2);
+         carta = darcarta();
+         puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2);
+        mano2.add(puntos);
          val = dibujocarta(carta.getValor());
         val7.setText(val);
         pintarcarta(carta,carta7);
         sumarpuntos(MenuInicial.jugador2,puntos,mano2);
         lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
 
-         carta = darcarta(mano1);
-         puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1,mano1);
+         carta = darcarta();
+         puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1);
+        mano1.add(puntos);
          val = dibujocarta(carta.getValor());
         val2.setText(val);
         pintarcarta(carta,carta2);
         sumarpuntos(MenuInicial.jugador1,puntos,mano1);
         lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
-         carta = darcarta(mano2);
-         puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2,mano2);
+         carta = darcarta();
+         puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2);
+        mano2.add(puntos);
          val = dibujocarta(carta.getValor());
         val8.setText(val);
         pintarcarta(carta,carta8);
@@ -300,18 +303,20 @@ public class Juego extends AppCompatActivity {
         Collections.shuffle(baraja);
     }
 
-    private void sumarpuntos(Player jugador, int puntos,ArrayList<Cartas> mano){
+    private void sumarpuntos(Player jugador, int puntos,ArrayList<Integer> mano){
 
         if(jugador.getPuntos()+puntos>21) {
             for (int q = 0; q < mano.size(); q++) {
-                if (mano.get(q).getValor() == 1){jugador.setPuntos(jugador.getPuntos()-10);}
+                if (mano.get(q) == 11){
+                    mano.set(q,0) ;
+                    jugador.setPuntos(jugador.getPuntos()-10);}
             }
         }
 
         jugador.setPuntos(jugador.getPuntos()+puntos) ;
     }
 
-    private int valordelacarta(int numero,Player jugador,ArrayList<Cartas> mano){
+    private int valordelacarta(int numero,Player jugador){
         int valorcarta;
         if(numero == 1){valorcarta = unoonce(jugador);}
         else if(numero == 11){valorcarta = 10;}

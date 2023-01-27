@@ -1,5 +1,6 @@
 package com.example.trabajogrupalblackjack.controlador;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -10,7 +11,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class Metodos {
 
@@ -47,6 +53,14 @@ public class Metodos {
             return true;
         }
         return false;
+    }
+
+    public static String conseguirFechaActual() {
+        Date fecha = Date.from(Instant.now());
+
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy/HH:mm:ss");
+
+        return sdf.format(fecha);
     }
 
 }

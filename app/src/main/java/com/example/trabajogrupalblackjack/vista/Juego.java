@@ -66,6 +66,7 @@ public class Juego extends AppCompatActivity {
     private TextView val11;
     private TextView val12;
 
+    //HACER QUE EL VALOR DEL 1 PUEDA VARIAR
     //SI EL 1 SALE EN LAS 2 PRIMERAS CARTAS DA FALLO
     //ALERT DIALOG ELEGIR VALOR 1 U 11
 

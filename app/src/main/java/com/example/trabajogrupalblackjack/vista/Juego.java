@@ -28,7 +28,7 @@ public class Juego extends AppCompatActivity {
 
 
    // public  ArrayList<String> valores;
-    public  ArrayList<Cartas> baraja;
+    public  ArrayList<Cartas> baraja = new ArrayList<>(51);
     private Button pedircartaplayer1;
     private Button pedircartaplayer2;
     private Button plantarseplayer1;
@@ -282,16 +282,12 @@ public class Juego extends AppCompatActivity {
         String[] trozos =linea.split(";");
         valores.addAll(Arrays.asList(trozos));
 
-        for(int q = 1;q<=52;q++){
+        for(int q = 0;q<=51;q++){
 
-            do{baraja.add(new Cartas(Integer.parseInt(valores.get(q)),"brujula"));}
-            while(q<=13);
-            do{baraja.add(new Cartas(Integer.parseInt(valores.get(q)),"huesos"));}
-            while(q<=26 && q > 13);
-            do{baraja.add(new Cartas(Integer.parseInt(valores.get(q)),"barco"));}
-            while(q<=39 && q > 26);
-            do{baraja.add(new Cartas(Integer.parseInt(valores.get(q)),"fruta"));}
-            while(q<=52 && q > 39);
+            if(q<=12){baraja.add(new Cartas(Integer.parseInt(valores.get(q)),"brujula"));}
+            else if(q<=25){baraja.add(new Cartas(Integer.parseInt(valores.get(q)),"huesos"));}
+            else if(q<=38){baraja.add(new Cartas(Integer.parseInt(valores.get(q)),"barco"));}
+            else if(q<=51){baraja.add(new Cartas(Integer.parseInt(valores.get(q)),"fruta"));}
 
         }
 

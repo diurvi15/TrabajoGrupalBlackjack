@@ -8,12 +8,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.trabajogrupalblackjack.R;
@@ -320,7 +322,11 @@ public class Juego extends AppCompatActivity {
 
     private int valordelacarta(int numero,Player jugador){
         int valorcarta;
-        if(numero == 1){valorcarta = unoonce(jugador);}
+        if(numero == 1){
+            //dialogElegirValorAs(numero, jugador);
+            valorcarta = unoonce(jugador);
+
+        }
         else if(numero == 11){valorcarta = 10;}
         else if(numero == 12){valorcarta = 10;}
         else if(numero == 13){valorcarta = 10;}
@@ -338,7 +344,6 @@ public class Juego extends AppCompatActivity {
         return val;
 
     }
-
 
     //ESTE METODO ES PARA ELGIR QUE VALOR TENDRA EL AS
     public int unoonce(Player jugador){
@@ -515,6 +520,35 @@ public class Juego extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public int dialogElegirValorAs(int numero, Player player){
+        if(numero == 1){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            LayoutInflater inflater = getLayoutInflater();
+            View vista = inflater.inflate(R.layout.elegir_valor_as, null);
+
+            RadioButton btn1 = findViewById(R.id.radio1);
+            RadioButton btn11 = findViewById(R.id.radio11);
+
+            builder.setTitle("Elige el valor del AS");
+            builder.setView(vista);
+
+            builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    if(btn1.isChecked()){
+                        player.setPuntos(player.getPuntos() + 1);
+                    } else{
+                        player.setPuntos(player.getPuntos() + 11);
+                    }
+                }
+            });
+            builder.show();
+
+        }
+        return player.getPuntos();
     }
 
 }

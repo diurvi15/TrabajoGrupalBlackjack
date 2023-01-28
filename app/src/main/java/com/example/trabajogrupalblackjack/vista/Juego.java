@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.trabajogrupalblackjack.R;
 import com.example.trabajogrupalblackjack.controlador.Metodos;
@@ -98,7 +99,6 @@ public class Juego extends AppCompatActivity {
             }
             if(!MenuInicial.jugador2.getPlantado()) {
             disabletraspedir1();
-                cancelarPlantarse(MenuInicial.jugador1, MenuInicial.jugador2, plantarseplayer1, plantarseplayer2);
             }
         });
 
@@ -122,24 +122,35 @@ public class Juego extends AppCompatActivity {
 
 
         plantarseplayer1.setOnClickListener(v->{
-            if(!MenuInicial.jugador2.getPlantado()) {
-                MenuInicial.jugador1.setPlantado(true);
-                if(calcularfin()){
-                    ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2, this);
-                    guardardatosganador(ganador);
+            MenuInicial.jugador1.setPlantado(true);
+            if(MenuInicial.jugador1.getPlantado() && MenuInicial.jugador2.getPlantado()){
+                alertasfinal("HABEIS EMPATADO", MenuInicial.jugador1, this);
+            } else {
+
+                if (!MenuInicial.jugador2.getPlantado()) {
+                    MenuInicial.jugador1.setPlantado(true);
+                    if (calcularfin()) {
+                        ganador = comprobarganador(MenuInicial.jugador1, MenuInicial.jugador2, this);
+                        guardardatosganador(ganador);
+                    }
+                    disabletraspedir1();
                 }
-                disabletraspedir1();
             }
         });
 
         plantarseplayer2.setOnClickListener(v->{
-            if(!MenuInicial.jugador1.getPlantado()) {
-                MenuInicial.jugador2.setPlantado(true);
-                if(calcularfin()){
-                    ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2, this);
-                    guardardatosganador(ganador);
+            MenuInicial.jugador2.setPlantado(true);
+            if(MenuInicial.jugador1.getPlantado() && MenuInicial.jugador2.getPlantado()){
+                alertasfinal("HABEIS EMPATADO", MenuInicial.jugador2, this);
+            } else {
+                if (!MenuInicial.jugador1.getPlantado()) {
+                    MenuInicial.jugador2.setPlantado(true);
+                    if (calcularfin()) {
+                        ganador = comprobarganador(MenuInicial.jugador1, MenuInicial.jugador2, this);
+                        guardardatosganador(ganador);
+                    }
+                    disabletraspedir2();
                 }
-               disabletraspedir2();
             }
         });
     }
@@ -277,7 +288,11 @@ public class Juego extends AppCompatActivity {
 
         if(MenuInicial.jugador1.getPuntos() < 17){
             plantarseplayer1.setEnabled(false);
-        } else {
+        } else if(MenuInicial.jugador1.getPuntos() < MenuInicial.jugador2.getPuntos()){
+            plantarseplayer1.setEnabled(false);
+        } else if(MenuInicial.jugador1.getPuntos() == MenuInicial.jugador2.getPuntos()){
+            plantarseplayer1.setEnabled(true);
+        } else{
             plantarseplayer1.setEnabled(true);
         }
     }
@@ -288,7 +303,11 @@ public class Juego extends AppCompatActivity {
         pedircartaplayer2.setEnabled(true);
         if(MenuInicial.jugador2.getPuntos() < 17){
             plantarseplayer2.setEnabled(false);
-        } else {
+        } else if(MenuInicial.jugador2.getPuntos() < MenuInicial.jugador1.getPuntos()){
+            plantarseplayer2.setEnabled(false);
+        } else if(MenuInicial.jugador2.getPuntos() == MenuInicial.jugador1.getPuntos()){
+            plantarseplayer2.setEnabled(true);
+        } else{
             plantarseplayer2.setEnabled(true);
         }
     }

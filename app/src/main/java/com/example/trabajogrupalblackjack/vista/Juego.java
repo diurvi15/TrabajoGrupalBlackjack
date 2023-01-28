@@ -142,9 +142,11 @@ public class Juego extends AppCompatActivity {
     private void guardardatosganador(Player win){
         if(win.equals(MenuInicial.jugador1))
         {
-           Metodos.creacionFicheroEstadisticas(this,win.toString()); // METODO DEL CSV y MENSAJE EN ALERTDIALOG
+            Metodos.lineaInicialFichero(this);
+           Metodos.creacionFicheroEstadisticas(this,win.toString() + ";" + Metodos.conseguirFechaActual()); // METODO DEL CSV y MENSAJE EN ALERTDIALOG
              }else if(win.equals(MenuInicial.jugador2)){
-            Metodos.creacionFicheroEstadisticas(this,win.toString());//METODO CSV
+            Metodos.lineaInicialFichero(this);
+            Metodos.creacionFicheroEstadisticas(this,win.toString() + ";" + Metodos.conseguirFechaActual());//METODO CSV
         }else{
             alertasfinal("EMPATE",win, this);
         }

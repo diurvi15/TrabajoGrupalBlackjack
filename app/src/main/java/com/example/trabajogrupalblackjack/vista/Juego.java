@@ -76,6 +76,8 @@ public class Juego extends AppCompatActivity {
         setContentView(R.layout.activity_juego);
         prepararpartida();
         primerascartas();
+
+        cancelarPlantarse(MenuInicial.jugador1, MenuInicial.jugador2, plantarseplayer1, plantarseplayer2);
         if(calcularfin()){
             ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2, this);
             guardardatosganador(ganador);
@@ -96,6 +98,7 @@ public class Juego extends AppCompatActivity {
             }
             if(!MenuInicial.jugador2.getPlantado()) {
             disabletraspedir1();
+                cancelarPlantarse(MenuInicial.jugador1, MenuInicial.jugador2, plantarseplayer1, plantarseplayer2);
             }
         });
 
@@ -271,14 +274,23 @@ public class Juego extends AppCompatActivity {
         pedircartaplayer2.setEnabled(false);
         plantarseplayer2.setEnabled(false);
         pedircartaplayer1.setEnabled(true);
-        plantarseplayer1.setEnabled(true);
+
+        if(MenuInicial.jugador1.getPuntos() < 17){
+            plantarseplayer1.setEnabled(false);
+        } else {
+            plantarseplayer1.setEnabled(true);
+        }
     }
 
     private void disabletraspedir1() {
-        pedircartaplayer2.setEnabled(true);
-        plantarseplayer2.setEnabled(true);
         pedircartaplayer1.setEnabled(false);
         plantarseplayer1.setEnabled(false);
+        pedircartaplayer2.setEnabled(true);
+        if(MenuInicial.jugador2.getPuntos() < 17){
+            plantarseplayer2.setEnabled(false);
+        } else {
+            plantarseplayer2.setEnabled(true);
+        }
     }
 
     private void prepararpartida() {
@@ -549,6 +561,14 @@ public class Juego extends AppCompatActivity {
 
         }
         return player.getPuntos();
+    }
+
+    public void cancelarPlantarse(Player player1, Player player2, Button btnplantarse1, Button btnplantarse2){
+        if(player1.getPuntos() < 17){
+            btnplantarse1.setEnabled(false);
+        } else if(player2.getPuntos() < 17){
+            btnplantarse2.setEnabled(false);
+        }
     }
 
 }

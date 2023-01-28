@@ -132,8 +132,9 @@ public class Juego extends AppCompatActivity {
                     if (calcularfin()) {
                         ganador = comprobarganador(MenuInicial.jugador1, MenuInicial.jugador2, this);
                         guardardatosganador(ganador);
+                    } else {
+                        disabletraspedir1();
                     }
-                    disabletraspedir1();
                 }
             }
         });
@@ -148,8 +149,9 @@ public class Juego extends AppCompatActivity {
                     if (calcularfin()) {
                         ganador = comprobarganador(MenuInicial.jugador1, MenuInicial.jugador2, this);
                         guardardatosganador(ganador);
+                    } else {
+                        disabletraspedir2();
                     }
-                    disabletraspedir2();
                 }
             }
         });
@@ -583,9 +585,14 @@ public class Juego extends AppCompatActivity {
     }
 
     public void cancelarPlantarse(Player player1, Player player2, Button btnplantarse1, Button btnplantarse2){
+
         if(player1.getPuntos() < 17){
             btnplantarse1.setEnabled(false);
+        } else if(player1.getPuntos() < player2.getPuntos()){
+            btnplantarse1.setEnabled(false);
         } else if(player2.getPuntos() < 17){
+            btnplantarse2.setEnabled(false);
+        } else if(player2.getPuntos() < player1.getPuntos()){
             btnplantarse2.setEnabled(false);
         }
     }

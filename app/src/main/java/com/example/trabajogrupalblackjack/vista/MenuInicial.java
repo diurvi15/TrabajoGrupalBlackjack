@@ -119,6 +119,8 @@ public class MenuInicial extends AppCompatActivity {
 
         builder.show();
 
+        Metodos.crearsonido(this, "sonido2");
+
         return null;
     }
 

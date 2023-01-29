@@ -68,7 +68,7 @@ public class Metodos {
         return sdf.format(fecha);
     }
 
-    public static void sonidoplantarse(){
+    public static void sonidonoloop(){
         sonido.start();
     }
     public static void loopingsonido(){
@@ -80,9 +80,12 @@ public class Metodos {
 
         switch (name) {
             case "sonido1":
-                sonido = MediaPlayer.create(context, R.raw.plantarse);
-                sonidoplantarse();
+                sonido = MediaPlayer.create(context, R.raw.plantarseeditcinco);
+                sonidonoloop();
                 break;
+            case "sonido2":
+                sonido = MediaPlayer.create(context, R.raw.barajandodialog);
+                sonidonoloop();
         }
     }
     public static void sonidoparar() {

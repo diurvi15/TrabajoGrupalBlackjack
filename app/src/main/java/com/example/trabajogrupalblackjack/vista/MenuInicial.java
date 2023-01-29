@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import com.example.trabajogrupalblackjack.R;
 import com.example.trabajogrupalblackjack.controlador.Metodos;
@@ -23,9 +22,9 @@ import com.example.trabajogrupalblackjack.modelo.Player;
 
 public class MenuInicial extends AppCompatActivity {
 
-    private Button creditosBtn;
-    private Button estadisticasBtn;
-    private Button botonJugar;
+    private ImageView botonJugar2;
+    private ImageView botonEstadisticas2;
+    private ImageView btncreditos2;
     private EditText nombre1;
     private EditText nombre2;
     public static Player jugador1;
@@ -35,37 +34,27 @@ public class MenuInicial extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_inicial);
-        botonJugar = findViewById(R.id.btnJugar);
+        botonJugar2 = findViewById(R.id.btnJugar2);
+        botonEstadisticas2 = findViewById(R.id.btnEstadisticas2);
+        btncreditos2 = findViewById(R.id.btnCreditos2);
 
-        botonJugar.setOnClickListener(v->{
-            DialogBotonJugar();
-        });
+        botonJugar2.setOnClickListener(v-> DialogBotonJugar());
 
-        estadisticasBtn = (Button) findViewById(R.id.btnEstadisticas);
-        estadisticasBtn.setOnClickListener(new View.OnClickListener() {
+        botonEstadisticas2.setOnClickListener(v -> dialogoEstadisticas());
 
-            @Override
-            public void onClick(View view) {
-                dialogoEstadisticas();
-            }
-        });
+        btncreditos2.setOnClickListener(v-> dialogCreditos());
+    }
 
-        //ALERTDIALOG CREDITOS
+    private void dialogCreditos() {
 
-        creditosBtn = (Button) findViewById(R.id.btnCreditos);
-        creditosBtn.setOnClickListener(new View.OnClickListener() {
+            AlertDialog.Builder creditos = new AlertDialog.Builder(MenuInicial.this);
+            creditos.setMessage(getString(R.string.creditos))
+                    .setPositiveButton("Volver", null);
 
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder creditos = new AlertDialog.Builder(MenuInicial.this);
-                creditos.setMessage(getString(R.string.creditos))
-                        .setPositiveButton("Volver", null);
+            AlertDialog titulo = creditos.create();
+            titulo.setTitle("Blackjack realizado por:\n");
+            titulo.show();
 
-                AlertDialog titulo = creditos.create();
-                titulo.setTitle("Blackjack realizado por:\n");
-                titulo.show();
-            }
-        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

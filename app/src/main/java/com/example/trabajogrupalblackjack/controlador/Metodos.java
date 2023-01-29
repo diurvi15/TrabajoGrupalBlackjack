@@ -2,10 +2,13 @@ package com.example.trabajogrupalblackjack.controlador;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.trabajogrupalblackjack.R;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -19,6 +22,8 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class Metodos {
+
+    public static MediaPlayer sonido;
 
     public static void creacionFicheroEstadisticas(Context context, String obj){
         try(FileOutputStream fos = context.openFileOutput("estadisticas.csv", Context.MODE_APPEND);
@@ -61,6 +66,27 @@ public class Metodos {
         @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
         return sdf.format(fecha);
+    }
+
+    public static void sonidoplantarse(){
+        sonido.start();
+    }
+    public static void loopingsonido(){
+        sonido.start();
+        sonido.setLooping(true);
+    }
+
+    public static void crearsonido(Context context, String name){
+
+        switch (name) {
+            case "sonido1":
+                sonido = MediaPlayer.create(context, R.raw.plantarse);
+                sonidoplantarse();
+                break;
+        }
+    }
+    public static void sonidoparar() {
+        sonido.stop();
     }
 
 }

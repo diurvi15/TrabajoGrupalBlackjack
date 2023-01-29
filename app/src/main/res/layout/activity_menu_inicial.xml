@@ -4,42 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundmenu"
     tools:context=".vista.MenuInicial">
 
-    <Button
-        android:id="@+id/btnJugar"
-        android:layout_width="152dp"
-        android:layout_height="85dp"
-        android:text="JUGAR"
+    <ImageView
+        android:id="@+id/btnEstadisticas2"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73" />
+        app:layout_constraintVertical_bias="0.865"
+        app:srcCompat="@drawable/estadisticascuatro" />
 
-    <Button
-        android:id="@+id/btnCreditos"
-        android:layout_width="161dp"
-        android:layout_height="59dp"
-        android:text="CRÉDITOS"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/btnJugar2"
+        android:layout_width="284dp"
+        android:layout_height="127dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnEstadisticas2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.100"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.899" />
+        app:layout_constraintVertical_bias="0.799"
+        app:srcCompat="@drawable/botonjugardospruebados" />
 
-    <Button
-        android:id="@+id/btnEstadisticas"
-        android:layout_width="161dp"
-        android:layout_height="59dp"
-        android:text="ESTADÍSTICAS"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.900"
+    <ImageView
+        android:id="@+id/btnCreditos2"
+        android:layout_width="112dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEstadisticas2"
+        app:layout_constraintEnd_toStartOf="@+id/btnEstadisticas2"
+        app:layout_constraintHorizontal_bias="0.295"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.899" />
+        app:layout_constraintTop_toTopOf="@+id/btnEstadisticas2"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/creditostres" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

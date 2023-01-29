@@ -67,9 +67,6 @@ public class Juego extends AppCompatActivity {
     private TextView val11;
     private TextView val12;
 
-    //HACER QUE EL VALOR DEL 1 PUEDA VARIAR
-    //SI EL 1 SALE EN LAS 2 PRIMERAS CARTAS DA FALLO
-    //ALERT DIALOG ELEGIR VALOR 1 U 11
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,9 +119,11 @@ public class Juego extends AppCompatActivity {
 
 
         plantarseplayer1.setOnClickListener(v->{
+            Metodos.crearsonido(this, "sonido1");
+
             MenuInicial.jugador1.setPlantado(true);
             if(MenuInicial.jugador1.getPlantado() && MenuInicial.jugador2.getPlantado()){
-                alertasfinal("HABEIS EMPATADO", MenuInicial.jugador1, this);
+                alertasfinal(" HABEIS EMPATADO", new Player("", false, 0), this);
             } else {
 
                 if (!MenuInicial.jugador2.getPlantado()) {
@@ -140,9 +139,11 @@ public class Juego extends AppCompatActivity {
         });
 
         plantarseplayer2.setOnClickListener(v->{
+            Metodos.crearsonido(this, "sonido1");
+
             MenuInicial.jugador2.setPlantado(true);
             if(MenuInicial.jugador1.getPlantado() && MenuInicial.jugador2.getPlantado()){
-                alertasfinal("HABEIS EMPATADO", MenuInicial.jugador2, this);
+                alertasfinal("HABEIS EMPATADO", new Player("", false, 0), this);
             } else {
                 if (!MenuInicial.jugador1.getPlantado()) {
                     MenuInicial.jugador2.setPlantado(true);
@@ -441,7 +442,7 @@ public class Juego extends AppCompatActivity {
                 startActivity(intent);
             }
         })
-                .setOnCancelListener(v->{finish();});
+        .setOnCancelListener(v->{finish();});
         builder.show();
 
     }
@@ -540,49 +541,15 @@ public class Juego extends AppCompatActivity {
             builder.setTitle("¿Cómo jugar?");
             builder.setMessage(getString(R.string.info));
 
-            builder.setPositiveButton("Volver", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                }
-            });
+            builder.setPositiveButton("Volver", null);
 
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
-            ;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public int dialogElegirValorAs(int numero, Player player){
-        if(numero == 1){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-            LayoutInflater inflater = getLayoutInflater();
-            View vista = inflater.inflate(R.layout.elegir_valor_as, null);
-
-            RadioButton btn1 = findViewById(R.id.radio1);
-            RadioButton btn11 = findViewById(R.id.radio11);
-
-            builder.setTitle("Elige el valor del AS");
-            builder.setView(vista);
-
-            builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    if(btn1.isChecked()){
-                        player.setPuntos(player.getPuntos() + 1);
-                    } else{
-                        player.setPuntos(player.getPuntos() + 11);
-                    }
-                }
-            });
-            builder.show();
-
-        }
-        return player.getPuntos();
-    }
 
     public void cancelarPlantarse(Player player1, Player player2, Button btnplantarse1, Button btnplantarse2){
 

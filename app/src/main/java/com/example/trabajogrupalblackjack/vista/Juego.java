@@ -290,8 +290,11 @@ public class Juego extends AppCompatActivity {
 
     private void disabletraspedir2() {
         pedircartaplayer2.setEnabled(false);
+        pedircartaplayer2.setVisibility(View.INVISIBLE);
         plantarseplayer2.setEnabled(false);
+        plantarseplayer2.setVisibility(View.INVISIBLE);
         pedircartaplayer1.setEnabled(true);
+        pedircartaplayer1.setVisibility(View.VISIBLE);
 
         if(MenuInicial.jugador1.getPuntos() < 17){
             plantarseplayer1.setVisibility(View.INVISIBLE);
@@ -310,8 +313,11 @@ public class Juego extends AppCompatActivity {
 
     private void disabletraspedir1() {
         pedircartaplayer1.setEnabled(false);
+        pedircartaplayer1.setVisibility(View.INVISIBLE);
         plantarseplayer1.setEnabled(false);
+        plantarseplayer1.setVisibility(View.INVISIBLE);
         pedircartaplayer2.setEnabled(true);
+        pedircartaplayer2.setVisibility(View.VISIBLE);
 
         if(MenuInicial.jugador2.getPuntos() < 17){
             plantarseplayer2.setVisibility(View.INVISIBLE);
@@ -565,7 +571,7 @@ public class Juego extends AppCompatActivity {
 
 
     public void cancelarPlantarse(Player player1, Player player2, ImageView btnplantarse1, ImageView btnplantarse2){
-    pedircartaplayer2.setEnabled(false);
+    pedircartaplayer2.setVisibility(View.INVISIBLE);
         if(player1.getPuntos() < 17){
             btnplantarse1.setVisibility(View.INVISIBLE);
             btnplantarse1.setEnabled(false);

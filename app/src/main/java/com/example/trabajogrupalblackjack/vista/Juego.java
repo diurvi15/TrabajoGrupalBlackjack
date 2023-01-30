@@ -34,10 +34,13 @@ public class Juego extends AppCompatActivity {
     public  ArrayList<Integer> mano1 = new ArrayList<>();
     public  ArrayList<Integer> mano2= new ArrayList<>();
     public  ArrayList<Cartas> baraja = new ArrayList<>(51);
-    private Button pedircartaplayer1;
-    private Button pedircartaplayer2;
-    private Button plantarseplayer1;
-    private Button plantarseplayer2;
+
+    private ImageView pedircartaplayer1;
+    private ImageView pedircartaplayer2;
+
+    private ImageView plantarseplayer1;
+    private ImageView plantarseplayer2;
+
     public  Player ganador;
     private TextView lblpuntos1;
     private TextView lblpuntos2;
@@ -291,12 +294,16 @@ public class Juego extends AppCompatActivity {
         pedircartaplayer1.setEnabled(true);
 
         if(MenuInicial.jugador1.getPuntos() < 17){
+            plantarseplayer1.setVisibility(View.INVISIBLE);
             plantarseplayer1.setEnabled(false);
         } else if(MenuInicial.jugador1.getPuntos() < MenuInicial.jugador2.getPuntos()){
+            plantarseplayer1.setVisibility(View.INVISIBLE);
             plantarseplayer1.setEnabled(false);
         } else if(MenuInicial.jugador1.getPuntos() == MenuInicial.jugador2.getPuntos()){
+            plantarseplayer1.setVisibility(View.VISIBLE);
             plantarseplayer1.setEnabled(true);
         } else{
+            plantarseplayer1.setVisibility(View.VISIBLE);
             plantarseplayer1.setEnabled(true);
         }
     }
@@ -305,13 +312,18 @@ public class Juego extends AppCompatActivity {
         pedircartaplayer1.setEnabled(false);
         plantarseplayer1.setEnabled(false);
         pedircartaplayer2.setEnabled(true);
+
         if(MenuInicial.jugador2.getPuntos() < 17){
+            plantarseplayer2.setVisibility(View.INVISIBLE);
             plantarseplayer2.setEnabled(false);
         } else if(MenuInicial.jugador2.getPuntos() < MenuInicial.jugador1.getPuntos()){
+            plantarseplayer2.setVisibility(View.INVISIBLE);
             plantarseplayer2.setEnabled(false);
         } else if(MenuInicial.jugador2.getPuntos() == MenuInicial.jugador1.getPuntos()){
+            plantarseplayer2.setVisibility(View.VISIBLE);
             plantarseplayer2.setEnabled(true);
         } else{
+            plantarseplayer2.setVisibility(View.VISIBLE);
             plantarseplayer2.setEnabled(true);
         }
     }
@@ -493,10 +505,10 @@ public class Juego extends AppCompatActivity {
 
 
     private void recogerControles(){
-        pedircartaplayer1 = findViewById(R.id.j1pedircarta);
-        pedircartaplayer2 = findViewById(R.id.j2pedircarta);
-        plantarseplayer1 = findViewById(R.id.j1plantarse);
-        plantarseplayer2 = findViewById(R.id.j2plantarse);
+        pedircartaplayer1 = findViewById(R.id.jugador1pedir);
+        pedircartaplayer2 = findViewById(R.id.jugador2pedir);
+        plantarseplayer1 = findViewById(R.id.plantarsej1);
+        plantarseplayer2 = findViewById(R.id.plantarsej2);
         lblpuntos1 = findViewById(R.id.valorjugador1);
         lblpuntos2 = findViewById(R.id.valorjugador2);
         carta1 = findViewById(R.id.primeracartaj1);
@@ -552,15 +564,19 @@ public class Juego extends AppCompatActivity {
     }
 
 
-    public void cancelarPlantarse(Player player1, Player player2, Button btnplantarse1, Button btnplantarse2){
-
+    public void cancelarPlantarse(Player player1, Player player2, ImageView btnplantarse1, ImageView btnplantarse2){
+    pedircartaplayer2.setEnabled(false);
         if(player1.getPuntos() < 17){
+            btnplantarse1.setVisibility(View.INVISIBLE);
             btnplantarse1.setEnabled(false);
         } else if(player1.getPuntos() < player2.getPuntos()){
+            btnplantarse1.setVisibility(View.INVISIBLE);
             btnplantarse1.setEnabled(false);
         } else if(player2.getPuntos() < 17){
+            btnplantarse2.setVisibility(View.INVISIBLE);
             btnplantarse2.setEnabled(false);
         } else if(player2.getPuntos() < player1.getPuntos()){
+            btnplantarse2.setVisibility(View.INVISIBLE);
             btnplantarse2.setEnabled(false);
         }
     }

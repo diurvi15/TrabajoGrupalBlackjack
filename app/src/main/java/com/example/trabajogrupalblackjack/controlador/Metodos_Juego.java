@@ -1,10 +1,38 @@
 package com.example.trabajogrupalblackjack.controlador;
 
 import static com.example.trabajogrupalblackjack.vista.Juego.baraja;
+import static com.example.trabajogrupalblackjack.vista.Juego.carta1;
+import static com.example.trabajogrupalblackjack.vista.Juego.carta10;
+import static com.example.trabajogrupalblackjack.vista.Juego.carta11;
+import static com.example.trabajogrupalblackjack.vista.Juego.carta12;
+import static com.example.trabajogrupalblackjack.vista.Juego.carta2;
+import static com.example.trabajogrupalblackjack.vista.Juego.carta3;
+import static com.example.trabajogrupalblackjack.vista.Juego.carta4;
+import static com.example.trabajogrupalblackjack.vista.Juego.carta5;
+import static com.example.trabajogrupalblackjack.vista.Juego.carta6;
+import static com.example.trabajogrupalblackjack.vista.Juego.carta7;
+import static com.example.trabajogrupalblackjack.vista.Juego.carta8;
+import static com.example.trabajogrupalblackjack.vista.Juego.carta9;
+import static com.example.trabajogrupalblackjack.vista.Juego.lblpuntos1;
+import static com.example.trabajogrupalblackjack.vista.Juego.lblpuntos2;
+import static com.example.trabajogrupalblackjack.vista.Juego.mano1;
+import static com.example.trabajogrupalblackjack.vista.Juego.mano2;
 import static com.example.trabajogrupalblackjack.vista.Juego.pedircartaplayer1;
 import static com.example.trabajogrupalblackjack.vista.Juego.pedircartaplayer2;
 import static com.example.trabajogrupalblackjack.vista.Juego.plantarseplayer1;
 import static com.example.trabajogrupalblackjack.vista.Juego.plantarseplayer2;
+import static com.example.trabajogrupalblackjack.vista.Juego.val1;
+import static com.example.trabajogrupalblackjack.vista.Juego.val10;
+import static com.example.trabajogrupalblackjack.vista.Juego.val11;
+import static com.example.trabajogrupalblackjack.vista.Juego.val12;
+import static com.example.trabajogrupalblackjack.vista.Juego.val2;
+import static com.example.trabajogrupalblackjack.vista.Juego.val3;
+import static com.example.trabajogrupalblackjack.vista.Juego.val4;
+import static com.example.trabajogrupalblackjack.vista.Juego.val5;
+import static com.example.trabajogrupalblackjack.vista.Juego.val6;
+import static com.example.trabajogrupalblackjack.vista.Juego.val7;
+import static com.example.trabajogrupalblackjack.vista.Juego.val8;
+import static com.example.trabajogrupalblackjack.vista.Juego.val9;
 import static com.example.trabajogrupalblackjack.vista.MenuInicial.jugador1;
 import static com.example.trabajogrupalblackjack.vista.MenuInicial.jugador2;
 
@@ -22,6 +50,63 @@ import java.util.Collections;
 
 public class Metodos_Juego {
 
+
+    public static void iniciarplantado(Player player1, Player player2, ImageView btnplantarse1, ImageView btnplantarse2){
+        pedircartaplayer2.setVisibility(View.INVISIBLE);
+        if(player1.getPuntos() < 17){
+            btnplantarse1.setVisibility(View.INVISIBLE);
+            btnplantarse1.setEnabled(false);
+        } else if(player1.getPuntos() < player2.getPuntos()){
+            btnplantarse1.setVisibility(View.INVISIBLE);
+            btnplantarse1.setEnabled(false);
+        } else if(player2.getPuntos() < 17){
+            btnplantarse2.setVisibility(View.INVISIBLE);
+            btnplantarse2.setEnabled(false);
+        } else if(player2.getPuntos() < player1.getPuntos()){
+            btnplantarse2.setVisibility(View.INVISIBLE);
+            btnplantarse2.setEnabled(false);
+        }
+    }
+
+    public static void primerascartas() {
+
+        Cartas carta = darcarta();
+        int puntos = valordelacarta(carta.getValor(), jugador1);
+        mano1.add(puntos);
+        String val = dibujocarta(carta.getValor());
+        val1.setText(val);
+        pintarcarta(carta,carta1);
+        sumarpuntos(jugador1,puntos,mano1);
+        lblpuntos1.setText(String.valueOf(jugador1.getPuntos()));
+
+        carta = darcarta();
+        puntos = valordelacarta(carta.getValor(), jugador2);
+        mano2.add(puntos);
+        val = dibujocarta(carta.getValor());
+        val7.setText(val);
+        pintarcarta(carta,carta7);
+        sumarpuntos(jugador2,puntos,mano2);
+        lblpuntos2.setText(String.valueOf(jugador2.getPuntos()));
+
+        carta = darcarta();
+        puntos = valordelacarta(carta.getValor(), jugador1);
+        mano1.add(puntos);
+        val = dibujocarta(carta.getValor());
+        val2.setText(val);
+        pintarcarta(carta,carta2);
+        sumarpuntos(jugador1,puntos,mano1);
+        lblpuntos1.setText(String.valueOf(jugador1.getPuntos()));
+
+        carta = darcarta();
+        puntos = valordelacarta(carta.getValor(), jugador2);
+        mano2.add(puntos);
+        val = dibujocarta(carta.getValor());
+        val8.setText(val);
+        pintarcarta(carta,carta8);
+        sumarpuntos(jugador2,puntos,mano2);
+        lblpuntos2.setText(String.valueOf(jugador2.getPuntos()));
+
+    }
 
     public static void cargarbaraja(String linea,ArrayList<String> valores) {
 
@@ -41,6 +126,64 @@ public class Metodos_Juego {
         Collections.shuffle(baraja);
     }
 
+    public static void mostrarnuevacarta(Cartas carta,int jugador) {
+
+        if(jugador==2){
+            String val = dibujocarta(carta.getValor());
+            if(carta9.getVisibility()==View.INVISIBLE){
+                carta9.setVisibility(View.VISIBLE);
+                val9.setVisibility(View.VISIBLE);
+                val9.setText(val);
+                pintarcarta(carta,carta9);
+            } else  if(carta10.getVisibility()==View.INVISIBLE){
+                carta10.setVisibility(View.VISIBLE);
+                val10.setVisibility(View.VISIBLE);
+                val10.setText(val);
+                pintarcarta(carta,carta10);
+            }else  if(carta11.getVisibility()==View.INVISIBLE){
+                carta11.setVisibility(View.VISIBLE);
+                val11.setVisibility(View.VISIBLE);
+                val11.setText(val);
+                pintarcarta(carta,carta11);
+            }else  if(carta12.getVisibility()==View.INVISIBLE){
+                carta12.setVisibility(View.VISIBLE);
+                val12.setVisibility(View.VISIBLE);
+                val12.setText(val);
+                pintarcarta(carta,carta12);
+            }
+        }else if (jugador ==1){
+            String val = dibujocarta(carta.getValor());
+            if(carta3.getVisibility()==View.INVISIBLE){
+                carta3.setVisibility(View.VISIBLE);
+                val3.setVisibility(View.VISIBLE);
+                val3.setText(val);
+                pintarcarta(carta,carta3);
+            } else  if(carta4.getVisibility()==View.INVISIBLE){
+                carta4.setVisibility(View.VISIBLE);
+                val4.setVisibility(View.VISIBLE);
+                val4.setText(val);
+                pintarcarta(carta,carta4);
+            }else  if(carta5.getVisibility()==View.INVISIBLE){
+                carta5.setVisibility(View.VISIBLE);
+                val5.setVisibility(View.VISIBLE);
+                val5.setText(val);
+                pintarcarta(carta,carta5);
+            }else  if(carta6.getVisibility()==View.INVISIBLE){
+                carta6.setVisibility(View.VISIBLE);
+                val6.setVisibility(View.VISIBLE);
+                val6.setText(val);
+                pintarcarta(carta,carta6);
+            }}
+
+    }
+
+    public static Cartas darcarta(){
+        Cartas carta= baraja.get(0);
+
+        baraja.remove(0);
+        return carta;
+    }
+
     public static void seguirturno(int jugador){
         if(jugador == 1) {
 
@@ -52,9 +195,11 @@ public class Metodos_Juego {
             if(jugador2.getPuntos()>=17 && jugador2.getPuntos()>=jugador1.getPuntos()&& jugador2.getPuntos()<=21){
                 plantarseplayer2.setVisibility(View.VISIBLE);
                 plantarseplayer2.setEnabled(true);}
+
         }
 
     }
+    
     public static void finturno(int jugador){
         if(jugador == 1) {
             pedircartaplayer1.setEnabled(false);

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/calavera"
+        android:backgroundTint="#BDBDBD"
+        android:backgroundTintMode="screen"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="131dp">
+
+        <TextView
+            android:id="@+id/textViewJugador1"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="Instrucciones"
+            android:textColor="#FDA51E"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewJugador2"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="Este juego consiste en enfrentarse a la banca  intentando conseguir 21 puntos o lo más cercano posible sin pasarse."
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewJugador"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="Dicha puntuación se suma con los valores de las 2 cartas que se reparten de inicio a cada jugador." />
+
+        <TextView
+            android:id="@+id/textViewJugador11"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="Si las dos cartas iniciales suman 21, se denomina Blackjack y habrás ganado." />
+
+        <TextView
+            android:id="@+id/textViewJugador12"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="Si no sumas 21 con las 2 cartas, podrás pedir cartas para conseguir dicho número o uno cercano pero sin pasarse ya que perderías automáticamente." />
+
+        <TextView
+            android:id="@+id/textViewJugador13"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="Si consideras que tienes una jugada próxima a 21, o que pedir más cartas podría hacerte pasarte de 21, tienes la opción de plantarte y esperar a lo que saque el crupier." />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

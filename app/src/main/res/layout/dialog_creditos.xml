@@ -2,30 +2,27 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/calavera">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/ESTADISTICAS"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:text="Estadisticas"
-            android:textColor="#FDA51E"
-            android:textStyle="bold" />
+        android:background="@drawable/calavera"
+        android:backgroundTint="#BDBDBD"
+        android:backgroundTintMode="screen"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="131dp">>
 
         <TextView
             android:id="@+id/textViewJugador1"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:text="Sin información" />
+            android:layout_marginTop="30dp"
+            android:text="Programa hecho por:"
+            android:textColor="#FDA51E"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewJugador2"
@@ -33,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:text="Sin información" />
+            android:text="Sergio Alejaldre" />
 
         <TextView
             android:id="@+id/textViewJugador3"
@@ -41,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:text="Sin información" />
+            android:text="Guillermo Fabian" />
 
         <TextView
             android:id="@+id/textViewJugador4"
@@ -49,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:text="Sin información" />
+            android:text="Daniel Gimenez" />
 
         <TextView
             android:id="@+id/textViewJugador5"
@@ -57,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:text="Sin información" />
+            android:text="Jose Miguel Marco" />
 
         <TextView
             android:id="@+id/textViewJugador6"
@@ -65,38 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:text="Sin información" />
+            android:text="Diego Urmente" />
 
-        <TextView
-            android:id="@+id/textViewJugador7"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:text="Sin información" />
-
-        <TextView
-            android:id="@+id/textViewJugador8"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:text="Sin información" />
-
-        <TextView
-            android:id="@+id/textViewJugador9"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:text="Sin información" />
-
-        <TextView
-            android:id="@+id/textViewJugador10"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:text="Sin información" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,9 +40,9 @@ public class MenuInicial extends AppCompatActivity {
 
         botonJugar2.setOnClickListener(v-> DialogBotonJugar());
 
-        botonEstadisticas2.setOnClickListener(v -> dialogoEstadisticas());
+        botonEstadisticas2.setOnClickListener(v -> dialogStats());
 
-        btncreditos2.setOnClickListener(v-> dialogCreditos());
+        btncreditos2.setOnClickListener(v-> dialogCreds());
     }
 
     private void dialogCreditos() {
@@ -69,20 +69,7 @@ public class MenuInicial extends AppCompatActivity {
 
 
         if(item.getItemId() == R.id.boton1){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("¿Cómo jugar?");
-            builder.setMessage(getString(R.string.info));
-
-            builder.setPositiveButton("Volver", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                }
-            });
-
-            AlertDialog alertDialog = builder.create();
-            alertDialog.show();
-            ;
+            dialogInstrucciones();
         }
 
         return super.onOptionsItemSelected(item);
@@ -136,6 +123,42 @@ public class MenuInicial extends AppCompatActivity {
         dialogo.setPositiveButton("Volver", null);
 
         View dialogoView = inflater.inflate(R.layout.dialog_estadisticas, null);
+        dialogo.setView(dialogoView);
+
+        dialogo.show();
+
+    }
+
+    public void dialogStats() {
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        dialogo.setPositiveButton("Volver", null);
+
+        View dialogoView = inflater.inflate(R.layout.dialog_estadisticas, null);
+        dialogo.setView(dialogoView);
+
+        dialogo.show();
+
+    }
+
+    public void dialogInstrucciones() {
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        dialogo.setPositiveButton("Volver", null);
+
+        View dialogoView = inflater.inflate(R.layout.dialog_instrucciones, null);
+        dialogo.setView(dialogoView);
+
+        dialogo.show();
+
+    }
+
+    public void dialogCreds() {
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        dialogo.setPositiveButton("Volver", null);
+
+        View dialogoView = inflater.inflate(R.layout.dialog_creditos, null);
         dialogo.setView(dialogoView);
 
         dialogo.show();

@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:text="Este juego consiste en enfrentarse a la banca  intentando conseguir 21 puntos o lo más cercano posible sin pasarse."
+            android:text="Este juego consiste en enfrentarse contra el otro jugador intentando conseguir 21 puntos o lo más cercano posible sin pasarse."
             android:textStyle="bold" />
 
         <TextView

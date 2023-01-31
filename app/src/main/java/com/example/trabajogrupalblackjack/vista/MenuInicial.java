@@ -18,6 +18,8 @@ import android.widget.ImageView;
 
 import com.example.trabajogrupalblackjack.R;
 import com.example.trabajogrupalblackjack.controlador.Metodos;
+import com.example.trabajogrupalblackjack.controlador.Metodos_Juego;
+import com.example.trabajogrupalblackjack.modelo.Estadisticas;
 import com.example.trabajogrupalblackjack.modelo.Player;
 
 public class MenuInicial extends AppCompatActivity {
@@ -40,6 +42,7 @@ public class MenuInicial extends AppCompatActivity {
 
         botonJugar2.setOnClickListener(v-> DialogBotonJugar());
 
+        Metodos_Juego.mostrarEstadisticas(this);
         botonEstadisticas2.setOnClickListener(v -> dialogStats());
 
         btncreditos2.setOnClickListener(v-> dialogCreds());
@@ -103,15 +106,19 @@ public class MenuInicial extends AppCompatActivity {
 
     }
     public void dialogStats() {
-        AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        dialogo.setPositiveButton("Volver", null);
 
-        View dialogoView = inflater.inflate(R.layout.dialog_estadisticas, null);
-        dialogo.setView(dialogoView);
-
-        dialogo.show();
-
+            StringBuilder builder = new StringBuilder();
+            for (Estadisticas estadisticas: Metodos_Juego.mostrarEstadisticas(this)){
+                builder.append(estadisticas.toString());
+            }
+            AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+            LayoutInflater inflater = this.getLayoutInflater();
+            dialogo.setTitle("Últimos diez mejores ganadores:");
+            dialogo.setMessage(builder.toString());
+            dialogo.setPositiveButton("Volver", null);
+            View dialogoView = inflater.inflate(R.layout.dialog_estadisticas, null);
+            dialogo.setView(dialogoView);
+            dialogo.show();
     }
 
     public void dialogInstrucciones() {

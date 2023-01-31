@@ -89,7 +89,7 @@ public class MenuInicial extends AppCompatActivity {
     }
 
 
-    private View.OnClickListener DialogBotonJugar(){
+    private void DialogBotonJugar(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("EMPEZAR PARTIDA");
 
@@ -113,15 +113,20 @@ public class MenuInicial extends AppCompatActivity {
 
                     Intent intent = new Intent(getApplicationContext(), Juego.class);
                     startActivity(intent);
+
+                    Metodos.crearsonido(getApplicationContext(), "sonido2");
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }}
         });
         builder.setView(view);
 
         builder.show();
 
-        Metodos.crearsonido(this, "sonido2");
 
-        return null;
     }
 
     public void dialogoEstadisticas() {

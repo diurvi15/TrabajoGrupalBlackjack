@@ -38,6 +38,7 @@ import android.widget.Toast;
 
 import com.example.trabajogrupalblackjack.R;
 import com.example.trabajogrupalblackjack.controlador.Metodos;
+import com.example.trabajogrupalblackjack.controlador.Metodos_Juego;
 import com.example.trabajogrupalblackjack.modelo.Cartas;
 import com.example.trabajogrupalblackjack.modelo.Player;
 
@@ -225,6 +226,54 @@ public class Juego extends AppCompatActivity {
 
     }
 
+
+
+    private Player comprobarganador(Player jugador1, Player jugador2, Context context) {
+        if (jugador1.getPuntos() > jugador2.getPuntos()) {
+
+            if (jugador1.getPuntos() == 21) {
+                Metodos.crearsonido(context,"sonido3");
+                alertasfinal(" Enhorabuena has conseguido 21 puntos", jugador1, context);
+
+                return jugador1;
+
+            } else if (jugador1.getPuntos() < 21) {
+                Metodos.crearsonido(context,"sonido3");
+                alertasfinal(" Has ganado", jugador1, context);
+                return jugador1;
+            } else if (jugador1.getPuntos() > 21) {
+                Metodos.crearsonido(context, "sonido4");
+                alertasfinal(" Te has pasado de 21", jugador1, context);
+                return jugador2;
+
+            }
+        } else if (jugador1.getPuntos() < jugador2.getPuntos()) {
+
+            if (jugador2.getPuntos() == 21) {
+                Metodos.crearsonido(context,"sonido3");
+                alertasfinal(" Enhorabuena has conseguido 21 puntos", jugador2, context);
+                return jugador2;
+
+            } else if (jugador2.getPuntos() < 21) {
+                Metodos.crearsonido(context,"sonido3");
+                alertasfinal(" Has ganado", jugador2, context);
+                return jugador2;
+            } else if (jugador2.getPuntos() > 21) {
+                Metodos.crearsonido(context, "sonido4");
+                alertasfinal(" Te has pasado de 21", jugador2, context);
+                return jugador1;
+            }
+
+        } else  {
+            Player empate = new Player("Empate", true, 0);
+            alertasfinal(" Quedais empate", empate, context);
+            return empate;
+        }
+
+        return null;
+
+    }
+
     private void alertasfinal(String msm,Player jugador, Context context){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -248,56 +297,28 @@ public class Juego extends AppCompatActivity {
         });
 
         builder.setNegativeButton("VOLVER AL INICIO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent = new Intent(getApplicationContext(), MenuInicial.class);
-                startActivity(intent);
-            }
-        })
-        .setOnCancelListener(v->{finish();});
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(getApplicationContext(), MenuInicial.class);
+                        startActivity(intent);
+                    }
+                })
+                .setOnCancelListener(v->{finish();});
         builder.show();
 
     }
 
-    private Player comprobarganador(Player jugador1, Player jugador2, Context context) {
-        if (jugador1.getPuntos() > jugador2.getPuntos()) {
-
-            if (jugador1.getPuntos() == 21) {
-
-                alertasfinal(" Enhorabuena has conseguido 21 puntos", jugador1, context);
-                return jugador1;
-
-            } else if (jugador1.getPuntos() < 21) {
-                alertasfinal(" Has ganado", jugador1, context);
-                return jugador1;
-            } else if (jugador1.getPuntos() > 21) {
-                alertasfinal(" Te has pasado de 21", jugador1, context);
-                return jugador2;
-
-            }
-        } else if (jugador1.getPuntos() < jugador2.getPuntos()) {
-
-            if (jugador2.getPuntos() == 21) {
-
-                alertasfinal(" Enhorabuena has conseguido 21 puntos", jugador2, context);
-                return jugador2;
-
-            } else if (jugador2.getPuntos() < 21) {
-                alertasfinal(" Has ganado", jugador2, context);
-                return jugador2;
-            } else if (jugador2.getPuntos() > 21) {
-                alertasfinal(" Te has pasado de 21", jugador2, context);
-                return jugador1;
-            }
-
-        } else  {
-            Player empate = new Player("Empate", true, 0);
-            alertasfinal(" Quedais empate", empate, context);
-            return empate;
+    private void guardardatosganador(Player win){
+        if(win.equals(jugador1))
+        {
+            Metodos.lineaInicialFichero(this);
+            Metodos.creacionFicheroEstadisticas(this,win.toString() + ";" + Metodos.conseguirFechaActual()); // METODO DEL CSV y MENSAJE EN ALERTDIALOG
+        }else if(win.equals(jugador2)){
+            Metodos.lineaInicialFichero(this);
+            Metodos.creacionFicheroEstadisticas(this,win.toString() + ";" + Metodos.conseguirFechaActual());//METODO CSV
+        }else{
+            alertasfinal("EMPATE",win, this);
         }
-
-        return null;
-
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -325,18 +346,7 @@ public class Juego extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void guardardatosganador(Player win){
-        if(win.equals(jugador1))
-        {
-            Metodos.lineaInicialFichero(this);
-            Metodos.creacionFicheroEstadisticas(this,win.toString() + ";" + Metodos.conseguirFechaActual()); // METODO DEL CSV y MENSAJE EN ALERTDIALOG
-        }else if(win.equals(jugador2)){
-            Metodos.lineaInicialFichero(this);
-            Metodos.creacionFicheroEstadisticas(this,win.toString() + ";" + Metodos.conseguirFechaActual());//METODO CSV
-        }else{
-            alertasfinal("EMPATE",win, this);
-        }
-    }
+
 
 
 }

@@ -67,7 +67,7 @@ public class Metodos {
 
 
 
-    public static void sonidonoloop(){
+    public static void sonidoplay(){
         sonido.start();
     }
     public static void loopingsonido(){
@@ -80,11 +80,22 @@ public class Metodos {
         switch (name) {
             case "sonido1":
                 sonido = MediaPlayer.create(context, R.raw.plantarseeditcinco);
-                sonidonoloop();
+                sonidoplay();
                 break;
+
             case "sonido2":
                 sonido = MediaPlayer.create(context, R.raw.barajandodialog);
-                sonidonoloop();
+                sonidoplay();
+                break;
+
+            case "sonido3":
+                sonido = MediaPlayer.create(context, R.raw.sonidowintres);
+                sonidoplay();
+                break;
+            case "sonido4":
+                sonido = MediaPlayer.create(context, R.raw.sonidoperderdos);
+                sonidoplay();
+                break;
         }
     }
     public static void sonidoparar() {

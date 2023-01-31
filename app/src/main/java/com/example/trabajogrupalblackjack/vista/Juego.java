@@ -291,6 +291,12 @@ public class Juego extends AppCompatActivity {
                 lblpuntos1.setText(String.valueOf(0));
                 lblpuntos2.setText(String.valueOf(0));
 
+                try {
+                    Metodos.crearsonido(context, "sonido2");
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 Intent intent = new Intent(context, Juego.class);
                 startActivity(intent);
             }

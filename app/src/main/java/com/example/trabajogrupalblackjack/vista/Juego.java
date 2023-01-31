@@ -3,9 +3,14 @@ package com.example.trabajogrupalblackjack.vista;
 import static com.example.trabajogrupalblackjack.controlador.Metodos_Juego.calcularfin;
 import static com.example.trabajogrupalblackjack.controlador.Metodos_Juego.cargarbaraja;
 import static com.example.trabajogrupalblackjack.controlador.Metodos_Juego.dibujocarta;
+import static com.example.trabajogrupalblackjack.controlador.Metodos_Juego.finturno;
 import static com.example.trabajogrupalblackjack.controlador.Metodos_Juego.pintarcarta;
+import static com.example.trabajogrupalblackjack.controlador.Metodos_Juego.seguirturno;
 import static com.example.trabajogrupalblackjack.controlador.Metodos_Juego.sumarpuntos;
 import static com.example.trabajogrupalblackjack.controlador.Metodos_Juego.valordelacarta;
+import static com.example.trabajogrupalblackjack.vista.MenuInicial.jugador1;
+import static com.example.trabajogrupalblackjack.vista.MenuInicial.jugador2;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -42,11 +47,11 @@ public class Juego extends AppCompatActivity {
     public  ArrayList<Integer> mano2= new ArrayList<>();
     public static  ArrayList<Cartas> baraja = new ArrayList<>(51);
 
-    private ImageView pedircartaplayer1;
-    private ImageView pedircartaplayer2;
+    public static ImageView pedircartaplayer1;
+    public static ImageView pedircartaplayer2;
 
-    private ImageView plantarseplayer1;
-    private ImageView plantarseplayer2;
+    public static ImageView plantarseplayer1;
+    public static ImageView plantarseplayer2;
 
     public  Player ganador;
     private TextView lblpuntos1;
@@ -86,9 +91,9 @@ public class Juego extends AppCompatActivity {
         prepararpartida();
         primerascartas();
 
-        cancelarPlantarse(MenuInicial.jugador1, MenuInicial.jugador2, plantarseplayer1, plantarseplayer2);
+        cancelarPlantarse(MenuInicial.jugador1, jugador2, plantarseplayer1, plantarseplayer2);
         if(calcularfin()){
-            ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2, this);
+            ganador = comprobarganador(MenuInicial.jugador1, jugador2, this);
             guardardatosganador(ganador);
         }
 
@@ -102,29 +107,33 @@ public class Juego extends AppCompatActivity {
             lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
             if(calcularfin()){
-                ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2, this);
+                ganador = comprobarganador(MenuInicial.jugador1, jugador2, this);
                 guardardatosganador(ganador);
-            }
-            if(!MenuInicial.jugador2.getPlantado()) {
-            disabletraspedir(1);
+            } if(jugador2.getPlantado()){
+                seguirturno(1);
+           }
+            else{
+                finturno(1);
             }
         });
 
         pedircartaplayer2.setOnClickListener(v->{
 
             Cartas carta = darcarta();
-            int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2);
+            int puntos = valordelacarta(carta.getValor(), jugador2);
             mano2.add(puntos);
             mostrarnuevacarta(carta,2);
-            sumarpuntos(MenuInicial.jugador2,puntos,mano2);
-            lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
+            sumarpuntos(jugador2,puntos,mano2);
+            lblpuntos2.setText(String.valueOf(jugador2.getPuntos()));
 
             if(calcularfin()){
-                ganador = comprobarganador(MenuInicial.jugador1,MenuInicial.jugador2, this);
+                ganador = comprobarganador(MenuInicial.jugador1, jugador2, this);
                 guardardatosganador(ganador);
             }
-            if(!MenuInicial.jugador1.getPlantado()) {
-                disabletraspedir(2);
+            if(!jugador1.getPlantado()){
+            finturno(2);}
+            else{
+                seguirturno(2);
             }
         });
 
@@ -133,17 +142,17 @@ public class Juego extends AppCompatActivity {
             Metodos.crearsonido(this, "sonido1");
 
             MenuInicial.jugador1.setPlantado(true);
-            if(MenuInicial.jugador1.getPlantado() && MenuInicial.jugador2.getPlantado()){
+            if(MenuInicial.jugador1.getPlantado() && jugador2.getPlantado()){
                 alertasfinal(" HABEIS EMPATADO", new Player("", false, 0), this);
             } else {
 
-                if (!MenuInicial.jugador2.getPlantado()) {
+                if (!jugador2.getPlantado()) {
                  //   MenuInicial.jugador1.setPlantado(true);
                     if (calcularfin()) {
-                        ganador = comprobarganador(MenuInicial.jugador1, MenuInicial.jugador2, this);
+                        ganador = comprobarganador(MenuInicial.jugador1, jugador2, this);
                         guardardatosganador(ganador);
                     } else {
-                        disabletraspedir(1);
+                        finturno(1);
                     }
                 }
             }
@@ -152,29 +161,72 @@ public class Juego extends AppCompatActivity {
         plantarseplayer2.setOnClickListener(v->{
             Metodos.crearsonido(this, "sonido1");
 
-            MenuInicial.jugador2.setPlantado(true);
-            if(MenuInicial.jugador1.getPlantado() && MenuInicial.jugador2.getPlantado()){
+            jugador2.setPlantado(true);
+            if(MenuInicial.jugador1.getPlantado() && jugador2.getPlantado()){
                 alertasfinal("HABEIS EMPATADO", new Player("", false, 0), this);
             } else {
                 if (!MenuInicial.jugador1.getPlantado()) {
                   //  MenuInicial.jugador2.setPlantado(true);
                     if (calcularfin()) {
-                        ganador = comprobarganador(MenuInicial.jugador1, MenuInicial.jugador2, this);
+                        ganador = comprobarganador(MenuInicial.jugador1, jugador2, this);
                         guardardatosganador(ganador);
                     } else {
-                        disabletraspedir(2);
+                        finturno(2);
                     }
                 }
             }
         });
     }
 
+    /*public void seguirturno(int jugador){
+        if(jugador == 1) {
+
+            if(jugador1.getPuntos()>=17 && jugador1.getPuntos()>=jugador2.getPuntos()&& jugador1.getPuntos()<=21){
+                plantarseplayer1.setVisibility(View.VISIBLE);
+                plantarseplayer1.setEnabled(true);}
+        } else if(jugador==2){
+
+            if(jugador2.getPuntos()>=17 && jugador2.getPuntos()>=jugador1.getPuntos()&& jugador2.getPuntos()<=21){
+                plantarseplayer2.setVisibility(View.VISIBLE);
+                plantarseplayer2.setEnabled(true);}
+        }
+
+    }
+    public void finturno(int jugador){
+        if(jugador == 1) {
+            pedircartaplayer1.setEnabled(false);
+            pedircartaplayer1.setVisibility(View.INVISIBLE);
+            plantarseplayer1.setEnabled(false);
+            plantarseplayer1.setVisibility(View.INVISIBLE);
+
+            pedircartaplayer2.setEnabled(true);
+            pedircartaplayer2.setVisibility(View.VISIBLE);
+
+            if(jugador2.getPuntos()>=17 && jugador2.getPuntos()>=jugador1.getPuntos() && jugador2.getPuntos()<=21){
+            plantarseplayer2.setVisibility(View.VISIBLE);
+            plantarseplayer2.setEnabled(true);}
+        } else if(jugador==2){
+
+            pedircartaplayer2.setEnabled(false);
+            pedircartaplayer2.setVisibility(View.INVISIBLE);
+            plantarseplayer2.setEnabled(false);
+            plantarseplayer2.setVisibility(View.INVISIBLE);
+            pedircartaplayer1.setEnabled(true);
+            pedircartaplayer1.setVisibility(View.VISIBLE);
+
+            if(jugador1.getPuntos()>=17 && jugador1.getPuntos()>=jugador2.getPuntos()&& jugador1.getPuntos()<=21){
+                plantarseplayer1.setVisibility(View.VISIBLE);
+                plantarseplayer1.setEnabled(true);}
+        }
+    }*/
+
+
     private void guardardatosganador(Player win){
         if(win.equals(MenuInicial.jugador1))
         {
             Metodos.lineaInicialFichero(this);
            Metodos.creacionFicheroEstadisticas(this,win.toString() + ";" + Metodos.conseguirFechaActual()); // METODO DEL CSV y MENSAJE EN ALERTDIALOG
-             }else if(win.equals(MenuInicial.jugador2)){
+             }else if(win.equals(jugador2)){
             Metodos.lineaInicialFichero(this);
             Metodos.creacionFicheroEstadisticas(this,win.toString() + ";" + Metodos.conseguirFechaActual());//METODO CSV
         }else{
@@ -202,13 +254,13 @@ public class Juego extends AppCompatActivity {
         lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
          carta = darcarta();
-         puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2);
+         puntos = valordelacarta(carta.getValor(), jugador2);
         mano2.add(puntos);
          val = dibujocarta(carta.getValor());
         val7.setText(val);
         pintarcarta(carta,carta7);
-        sumarpuntos(MenuInicial.jugador2,puntos,mano2);
-        lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
+        sumarpuntos(jugador2,puntos,mano2);
+        lblpuntos2.setText(String.valueOf(jugador2.getPuntos()));
 
          carta = darcarta();
          puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1);
@@ -220,13 +272,13 @@ public class Juego extends AppCompatActivity {
         lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
          carta = darcarta();
-         puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2);
+         puntos = valordelacarta(carta.getValor(), jugador2);
         mano2.add(puntos);
          val = dibujocarta(carta.getValor());
         val8.setText(val);
         pintarcarta(carta,carta8);
-        sumarpuntos(MenuInicial.jugador2,puntos,mano2);
-        lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
+        sumarpuntos(jugador2,puntos,mano2);
+        lblpuntos2.setText(String.valueOf(jugador2.getPuntos()));
 
     }
 
@@ -282,52 +334,7 @@ public class Juego extends AppCompatActivity {
 
     }
 
-    private void disabletraspedir(int jugador) {
-        if(jugador==1){
-            pedircartaplayer1.setEnabled(false);
-            pedircartaplayer1.setVisibility(View.INVISIBLE);
-            plantarseplayer1.setEnabled(false);
-            plantarseplayer1.setVisibility(View.INVISIBLE);
-            pedircartaplayer2.setEnabled(true);
-            pedircartaplayer2.setVisibility(View.VISIBLE);
 
-            if(MenuInicial.jugador2.getPuntos() < 17){
-                plantarseplayer2.setVisibility(View.INVISIBLE);
-                plantarseplayer2.setEnabled(false);
-            } else if(MenuInicial.jugador2.getPuntos() < MenuInicial.jugador1.getPuntos()){
-                plantarseplayer2.setVisibility(View.INVISIBLE);
-                plantarseplayer2.setEnabled(false);
-            } else if(MenuInicial.jugador2.getPuntos() == MenuInicial.jugador1.getPuntos()){
-                plantarseplayer2.setVisibility(View.VISIBLE);
-                plantarseplayer2.setEnabled(true);
-            } else{
-                plantarseplayer2.setVisibility(View.VISIBLE);
-                plantarseplayer2.setEnabled(true);
-            }}
-        else if(jugador==2){
-            pedircartaplayer2.setEnabled(false);
-            pedircartaplayer2.setVisibility(View.INVISIBLE);
-            plantarseplayer2.setEnabled(false);
-            plantarseplayer2.setVisibility(View.INVISIBLE);
-            pedircartaplayer1.setEnabled(true);
-            pedircartaplayer1.setVisibility(View.VISIBLE);
-
-            if(MenuInicial.jugador1.getPuntos() < 17){
-                plantarseplayer1.setVisibility(View.INVISIBLE);
-                plantarseplayer1.setEnabled(false);
-            } else if(MenuInicial.jugador1.getPuntos() < MenuInicial.jugador2.getPuntos()){
-                plantarseplayer1.setVisibility(View.INVISIBLE);
-                plantarseplayer1.setEnabled(false);
-            } else if(MenuInicial.jugador1.getPuntos() == MenuInicial.jugador2.getPuntos()){
-                plantarseplayer1.setVisibility(View.VISIBLE);
-                plantarseplayer1.setEnabled(true);
-            } else{
-                plantarseplayer1.setVisibility(View.VISIBLE);
-                plantarseplayer1.setEnabled(true);
-            }
-        }
-
-    }
 
     private void prepararpartida() {
 
@@ -349,8 +356,8 @@ public class Juego extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 MenuInicial.jugador1.setPuntos(0);
                 MenuInicial.jugador1.setPlantado(false);
-                MenuInicial.jugador2.setPuntos(0);
-                MenuInicial.jugador2.setPlantado(false);
+                jugador2.setPuntos(0);
+                jugador2.setPlantado(false);
 
                 lblpuntos1.setText(String.valueOf(0));
                 lblpuntos2.setText(String.valueOf(0));

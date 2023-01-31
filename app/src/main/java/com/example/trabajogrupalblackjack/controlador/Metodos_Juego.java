@@ -1,7 +1,14 @@
 package com.example.trabajogrupalblackjack.controlador;
 
 import static com.example.trabajogrupalblackjack.vista.Juego.baraja;
+import static com.example.trabajogrupalblackjack.vista.Juego.pedircartaplayer1;
+import static com.example.trabajogrupalblackjack.vista.Juego.pedircartaplayer2;
+import static com.example.trabajogrupalblackjack.vista.Juego.plantarseplayer1;
+import static com.example.trabajogrupalblackjack.vista.Juego.plantarseplayer2;
+import static com.example.trabajogrupalblackjack.vista.MenuInicial.jugador1;
+import static com.example.trabajogrupalblackjack.vista.MenuInicial.jugador2;
 
+import android.view.View;
 import android.widget.ImageView;
 
 import com.example.trabajogrupalblackjack.R;
@@ -32,6 +39,48 @@ public class Metodos_Juego {
         }
 
         Collections.shuffle(baraja);
+    }
+
+    public static void seguirturno(int jugador){
+        if(jugador == 1) {
+
+            if(jugador1.getPuntos()>=17 && jugador1.getPuntos()>=jugador2.getPuntos()&& jugador1.getPuntos()<=21){
+                plantarseplayer1.setVisibility(View.VISIBLE);
+                plantarseplayer1.setEnabled(true);}
+        } else if(jugador==2){
+
+            if(jugador2.getPuntos()>=17 && jugador2.getPuntos()>=jugador1.getPuntos()&& jugador2.getPuntos()<=21){
+                plantarseplayer2.setVisibility(View.VISIBLE);
+                plantarseplayer2.setEnabled(true);}
+        }
+
+    }
+    public static void finturno(int jugador){
+        if(jugador == 1) {
+            pedircartaplayer1.setEnabled(false);
+            pedircartaplayer1.setVisibility(View.INVISIBLE);
+            plantarseplayer1.setEnabled(false);
+            plantarseplayer1.setVisibility(View.INVISIBLE);
+
+            pedircartaplayer2.setEnabled(true);
+            pedircartaplayer2.setVisibility(View.VISIBLE);
+
+            if(jugador2.getPuntos()>=17 && jugador2.getPuntos()>=jugador1.getPuntos() && jugador2.getPuntos()<=21){
+                plantarseplayer2.setVisibility(View.VISIBLE);
+                plantarseplayer2.setEnabled(true);}
+        } else if(jugador==2){
+
+            pedircartaplayer2.setEnabled(false);
+            pedircartaplayer2.setVisibility(View.INVISIBLE);
+            plantarseplayer2.setEnabled(false);
+            plantarseplayer2.setVisibility(View.INVISIBLE);
+            pedircartaplayer1.setEnabled(true);
+            pedircartaplayer1.setVisibility(View.VISIBLE);
+
+            if(jugador1.getPuntos()>=17 && jugador1.getPuntos()>=jugador2.getPuntos()&& jugador1.getPuntos()<=21){
+                plantarseplayer1.setVisibility(View.VISIBLE);
+                plantarseplayer1.setEnabled(true);}
+        }
     }
 
     public static boolean calcularfin(){
@@ -85,6 +134,7 @@ public class Metodos_Juego {
         else {valorcarta = numero;}
         return valorcarta;
     }
+
     public static int unoonce(Player jugador){
         if(jugador.getPuntos()+ 11 <21 ){
 

@@ -339,17 +339,22 @@ public class Juego extends AppCompatActivity {
 
 
         if(item.getItemId() == R.id.boton1){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("¿Cómo jugar?");
-            builder.setMessage(getString(R.string.info));
-
-            builder.setPositiveButton("Volver", null);
-
-            AlertDialog alertDialog = builder.create();
-            alertDialog.show();
+            dialogInstrucciones();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void dialogInstrucciones() {
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        dialogo.setPositiveButton("Volver", null);
+
+        View dialogoView = inflater.inflate(R.layout.dialog_instrucciones, null);
+        dialogo.setView(dialogoView);
+
+        dialogo.show();
+
     }
 
 

@@ -1,5 +1,12 @@
 package com.example.trabajogrupalblackjack.vista;
 
+import static com.example.trabajogrupalblackjack.controlador.Metodos_Juego.calcularfin;
+import static com.example.trabajogrupalblackjack.controlador.Metodos_Juego.cargarbaraja;
+import static com.example.trabajogrupalblackjack.controlador.Metodos_Juego.dibujocarta;
+import static com.example.trabajogrupalblackjack.controlador.Metodos_Juego.pintarcarta;
+import static com.example.trabajogrupalblackjack.controlador.Metodos_Juego.sumarpuntos;
+import static com.example.trabajogrupalblackjack.controlador.Metodos_Juego.valordelacarta;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,7 +40,7 @@ public class Juego extends AppCompatActivity {
 
     public  ArrayList<Integer> mano1 = new ArrayList<>();
     public  ArrayList<Integer> mano2= new ArrayList<>();
-    public  ArrayList<Cartas> baraja = new ArrayList<>(51);
+    public static  ArrayList<Cartas> baraja = new ArrayList<>(51);
 
     private ImageView pedircartaplayer1;
     private ImageView pedircartaplayer2;
@@ -90,7 +97,7 @@ public class Juego extends AppCompatActivity {
             Cartas carta = darcarta();
             int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1);
             mano1.add(puntos);
-            mostrarnuevacartaj1(carta);
+            mostrarnuevacarta(carta,1);
             sumarpuntos(MenuInicial.jugador1,puntos,mano1);
             lblpuntos1.setText(String.valueOf(MenuInicial.jugador1.getPuntos()));
 
@@ -99,7 +106,7 @@ public class Juego extends AppCompatActivity {
                 guardardatosganador(ganador);
             }
             if(!MenuInicial.jugador2.getPlantado()) {
-            disabletraspedir1();
+            disabletraspedir(1);
             }
         });
 
@@ -108,7 +115,7 @@ public class Juego extends AppCompatActivity {
             Cartas carta = darcarta();
             int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador2);
             mano2.add(puntos);
-            mostrarnuevacartaj2(carta);
+            mostrarnuevacarta(carta,2);
             sumarpuntos(MenuInicial.jugador2,puntos,mano2);
             lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
 
@@ -117,7 +124,7 @@ public class Juego extends AppCompatActivity {
                 guardardatosganador(ganador);
             }
             if(!MenuInicial.jugador1.getPlantado()) {
-                disabletraspedir2();
+                disabletraspedir(2);
             }
         });
 
@@ -131,12 +138,12 @@ public class Juego extends AppCompatActivity {
             } else {
 
                 if (!MenuInicial.jugador2.getPlantado()) {
-                    MenuInicial.jugador1.setPlantado(true);
+                 //   MenuInicial.jugador1.setPlantado(true);
                     if (calcularfin()) {
                         ganador = comprobarganador(MenuInicial.jugador1, MenuInicial.jugador2, this);
                         guardardatosganador(ganador);
                     } else {
-                        disabletraspedir1();
+                        disabletraspedir(1);
                     }
                 }
             }
@@ -150,12 +157,12 @@ public class Juego extends AppCompatActivity {
                 alertasfinal("HABEIS EMPATADO", new Player("", false, 0), this);
             } else {
                 if (!MenuInicial.jugador1.getPlantado()) {
-                    MenuInicial.jugador2.setPlantado(true);
+                  //  MenuInicial.jugador2.setPlantado(true);
                     if (calcularfin()) {
                         ganador = comprobarganador(MenuInicial.jugador1, MenuInicial.jugador2, this);
                         guardardatosganador(ganador);
                     } else {
-                        disabletraspedir2();
+                        disabletraspedir(2);
                     }
                 }
             }
@@ -180,16 +187,6 @@ public class Juego extends AppCompatActivity {
 
     baraja.remove(0);
      return carta;
-}
-
-    private void pintarcarta(Cartas carta,ImageView fondo){
-
-        if(carta.getPalo().equals("brujula")){ fondo.setImageResource(R.drawable.cartabrujula);}
-        if(carta.getPalo().equals("huesos")){ fondo.setImageResource(R.drawable.cartahuesos);}
-        if(carta.getPalo().equals("barco")){ fondo.setImageResource(R.drawable.cartabarco);}
-        if(carta.getPalo().equals("fruta")){ fondo.setImageResource(R.drawable.cartafruta);}
-
-
 }
 
 
@@ -231,38 +228,12 @@ public class Juego extends AppCompatActivity {
         sumarpuntos(MenuInicial.jugador2,puntos,mano2);
         lblpuntos2.setText(String.valueOf(MenuInicial.jugador2.getPuntos()));
 
-
     }
 
-    private void mostrarnuevacartaj1(Cartas carta) {
 
-        String val = dibujocarta(carta.getValor());
-        if(carta3.getVisibility()==View.INVISIBLE){
-            carta3.setVisibility(View.VISIBLE);
-            val3.setVisibility(View.VISIBLE);
-            val3.setText(val);
-            pintarcarta(carta,carta3);
-        } else  if(carta4.getVisibility()==View.INVISIBLE){
-            carta4.setVisibility(View.VISIBLE);
-            val4.setVisibility(View.VISIBLE);
-            val4.setText(val);
-            pintarcarta(carta,carta4);
-        }else  if(carta5.getVisibility()==View.INVISIBLE){
-            carta5.setVisibility(View.VISIBLE);
-            val5.setVisibility(View.VISIBLE);
-            val5.setText(val);
-            pintarcarta(carta,carta5);
-        }else  if(carta6.getVisibility()==View.INVISIBLE){
-            carta6.setVisibility(View.VISIBLE);
-            val6.setVisibility(View.VISIBLE);
-            val6.setText(val);
-            pintarcarta(carta,carta6);
-        }
+    private void mostrarnuevacarta(Cartas carta,int jugador) {
 
-    }
-
-    private void mostrarnuevacartaj2(Cartas carta) {
-
+        if(jugador==2){
         String val = dibujocarta(carta.getValor());
         if(carta9.getVisibility()==View.INVISIBLE){
             carta9.setVisibility(View.VISIBLE);
@@ -285,153 +256,88 @@ public class Juego extends AppCompatActivity {
             val12.setText(val);
             pintarcarta(carta,carta12);
         }
+        }else if (jugador ==1){
+            String val = dibujocarta(carta.getValor());
+            if(carta3.getVisibility()==View.INVISIBLE){
+                carta3.setVisibility(View.VISIBLE);
+                val3.setVisibility(View.VISIBLE);
+                val3.setText(val);
+                pintarcarta(carta,carta3);
+            } else  if(carta4.getVisibility()==View.INVISIBLE){
+                carta4.setVisibility(View.VISIBLE);
+                val4.setVisibility(View.VISIBLE);
+                val4.setText(val);
+                pintarcarta(carta,carta4);
+            }else  if(carta5.getVisibility()==View.INVISIBLE){
+                carta5.setVisibility(View.VISIBLE);
+                val5.setVisibility(View.VISIBLE);
+                val5.setText(val);
+                pintarcarta(carta,carta5);
+            }else  if(carta6.getVisibility()==View.INVISIBLE){
+                carta6.setVisibility(View.VISIBLE);
+                val6.setVisibility(View.VISIBLE);
+                val6.setText(val);
+                pintarcarta(carta,carta6);
+            }}
 
     }
 
-    private void disabletraspedir2() {
-        pedircartaplayer2.setEnabled(false);
-        pedircartaplayer2.setVisibility(View.INVISIBLE);
-        plantarseplayer2.setEnabled(false);
-        plantarseplayer2.setVisibility(View.INVISIBLE);
-        pedircartaplayer1.setEnabled(true);
-        pedircartaplayer1.setVisibility(View.VISIBLE);
-
-        if(MenuInicial.jugador1.getPuntos() < 17){
-            plantarseplayer1.setVisibility(View.INVISIBLE);
+    private void disabletraspedir(int jugador) {
+        if(jugador==1){
+            pedircartaplayer1.setEnabled(false);
+            pedircartaplayer1.setVisibility(View.INVISIBLE);
             plantarseplayer1.setEnabled(false);
-        } else if(MenuInicial.jugador1.getPuntos() < MenuInicial.jugador2.getPuntos()){
             plantarseplayer1.setVisibility(View.INVISIBLE);
-            plantarseplayer1.setEnabled(false);
-        } else if(MenuInicial.jugador1.getPuntos() == MenuInicial.jugador2.getPuntos()){
-            plantarseplayer1.setVisibility(View.VISIBLE);
-            plantarseplayer1.setEnabled(true);
-        } else{
-            plantarseplayer1.setVisibility(View.VISIBLE);
-            plantarseplayer1.setEnabled(true);
-        }
-    }
+            pedircartaplayer2.setEnabled(true);
+            pedircartaplayer2.setVisibility(View.VISIBLE);
 
-    private void disabletraspedir1() {
-        pedircartaplayer1.setEnabled(false);
-        pedircartaplayer1.setVisibility(View.INVISIBLE);
-        plantarseplayer1.setEnabled(false);
-        plantarseplayer1.setVisibility(View.INVISIBLE);
-        pedircartaplayer2.setEnabled(true);
-        pedircartaplayer2.setVisibility(View.VISIBLE);
+            if(MenuInicial.jugador2.getPuntos() < 17){
+                plantarseplayer2.setVisibility(View.INVISIBLE);
+                plantarseplayer2.setEnabled(false);
+            } else if(MenuInicial.jugador2.getPuntos() < MenuInicial.jugador1.getPuntos()){
+                plantarseplayer2.setVisibility(View.INVISIBLE);
+                plantarseplayer2.setEnabled(false);
+            } else if(MenuInicial.jugador2.getPuntos() == MenuInicial.jugador1.getPuntos()){
+                plantarseplayer2.setVisibility(View.VISIBLE);
+                plantarseplayer2.setEnabled(true);
+            } else{
+                plantarseplayer2.setVisibility(View.VISIBLE);
+                plantarseplayer2.setEnabled(true);
+            }}
+        else if(jugador==2){
+            pedircartaplayer2.setEnabled(false);
+            pedircartaplayer2.setVisibility(View.INVISIBLE);
+            plantarseplayer2.setEnabled(false);
+            plantarseplayer2.setVisibility(View.INVISIBLE);
+            pedircartaplayer1.setEnabled(true);
+            pedircartaplayer1.setVisibility(View.VISIBLE);
 
-        if(MenuInicial.jugador2.getPuntos() < 17){
-            plantarseplayer2.setVisibility(View.INVISIBLE);
-            plantarseplayer2.setEnabled(false);
-        } else if(MenuInicial.jugador2.getPuntos() < MenuInicial.jugador1.getPuntos()){
-            plantarseplayer2.setVisibility(View.INVISIBLE);
-            plantarseplayer2.setEnabled(false);
-        } else if(MenuInicial.jugador2.getPuntos() == MenuInicial.jugador1.getPuntos()){
-            plantarseplayer2.setVisibility(View.VISIBLE);
-            plantarseplayer2.setEnabled(true);
-        } else{
-            plantarseplayer2.setVisibility(View.VISIBLE);
-            plantarseplayer2.setEnabled(true);
+            if(MenuInicial.jugador1.getPuntos() < 17){
+                plantarseplayer1.setVisibility(View.INVISIBLE);
+                plantarseplayer1.setEnabled(false);
+            } else if(MenuInicial.jugador1.getPuntos() < MenuInicial.jugador2.getPuntos()){
+                plantarseplayer1.setVisibility(View.INVISIBLE);
+                plantarseplayer1.setEnabled(false);
+            } else if(MenuInicial.jugador1.getPuntos() == MenuInicial.jugador2.getPuntos()){
+                plantarseplayer1.setVisibility(View.VISIBLE);
+                plantarseplayer1.setEnabled(true);
+            } else{
+                plantarseplayer1.setVisibility(View.VISIBLE);
+                plantarseplayer1.setEnabled(true);
+            }
         }
+
     }
 
     private void prepararpartida() {
 
         recogerControles();
-        cargarbaraja();
-
-    }
-
-    private void cargarbaraja() {
-
-       ArrayList<String> valores = new ArrayList<>(52);
+        ArrayList<String> valores = new ArrayList<>(52);
         String linea = getString(R.string.valorcartas);
-        String[] trozos =linea.split(";");
-        valores.addAll(Arrays.asList(trozos));
-
-        for(int q = 0;q<=51;q++){
-
-            if(q<=12){baraja.add(new Cartas(Integer.parseInt(valores.get(q)),"brujula"));}
-            else if(q<=25){baraja.add(new Cartas(Integer.parseInt(valores.get(q)),"huesos"));}
-            else if(q<=38){baraja.add(new Cartas(Integer.parseInt(valores.get(q)),"barco"));}
-            else if(q<=51){baraja.add(new Cartas(Integer.parseInt(valores.get(q)),"fruta"));}
-
-        }
-
-        Collections.shuffle(baraja);
-    }
-
-    private void sumarpuntos(Player jugador, int puntos,ArrayList<Integer> mano){
-
-        if(jugador.getPuntos()+puntos>21) {
-            for (int q = 0; q < mano.size(); q++) {
-                if (mano.get(q) == 11){
-                    mano.set(q,0) ;
-                    jugador.setPuntos(jugador.getPuntos()-10);}
-            }
-        }
-
-        jugador.setPuntos(jugador.getPuntos()+puntos) ;
-    }
-
-    private int valordelacarta(int numero,Player jugador){
-        int valorcarta;
-        if(numero == 1){
-            //dialogElegirValorAs(numero, jugador);
-            valorcarta = unoonce(jugador);
-
-        }
-        else if(numero == 11){valorcarta = 10;}
-        else if(numero == 12){valorcarta = 10;}
-        else if(numero == 13){valorcarta = 10;}
-        else {valorcarta = numero;}
-        return valorcarta;
-    }
-    private String dibujocarta(int valor){
-
-        String val="";
-
-        if(valor == 11){ val="J";}
-        else if(valor == 12){val="Q";}
-        else if(valor == 13){val = "K";}
-        else {val = String.valueOf(valor);}
-        return val;
+        cargarbaraja(linea,valores);
 
     }
 
-    //ESTE METODO ES PARA ELGIR QUE VALOR TENDRA EL AS
-    public int unoonce(Player jugador){
-        if(jugador.getPuntos()+ 11 <21 ){
-
-            return 11;
-
-        }else if(jugador.getPuntos() + 11 == 21)
-        {
-            return 11;
-        }
-        else
-        {
-            return 1;
-        }
-
-    }
-
-    //ESTE METODO IRA DESPUES EN LA CARPETA CONTROLADOR
-    //SIRVE PARA VER SI SE HA ACABADO LA PARTIDA, CADA VEZ QUE SE PIDA CARTA HAY QUE LLAMAR A ESTE METODO
-    public boolean calcularfin(){
-        if(MenuInicial.jugador1.getPlantado() && MenuInicial.jugador2.getPuntos() > MenuInicial.jugador1.getPuntos()
-                ||
-                MenuInicial.jugador2.getPlantado() && MenuInicial.jugador1.getPuntos() > MenuInicial.jugador2.getPuntos())
-        {
-            return true;
-        }
-        else if(MenuInicial.jugador1.getPuntos()>=21||MenuInicial.jugador2.getPuntos()>=21) {
-
-            return true;
-        }
-
-        else{return false;}
-
-    }
 
     private void alertasfinal(String msm,Player jugador, Context context){
 

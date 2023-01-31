@@ -6,8 +6,6 @@ import android.media.MediaPlayer;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.trabajogrupalblackjack.R;
 
 import java.io.FileNotFoundException;
@@ -17,9 +15,8 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.TimeZone;
+
 
 public class Metodos {
 
@@ -67,6 +64,8 @@ public class Metodos {
 
         return sdf.format(fecha);
     }
+
+
 
     public static void sonidonoloop(){
         sonido.start();

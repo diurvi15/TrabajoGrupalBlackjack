@@ -44,19 +44,6 @@ public class MenuInicial extends AppCompatActivity {
 
         btncreditos2.setOnClickListener(v-> dialogCreds());
     }
-
-    private void dialogCreditos() {
-
-            AlertDialog.Builder creditos = new AlertDialog.Builder(MenuInicial.this);
-            creditos.setMessage(getString(R.string.creditos))
-                    .setPositiveButton("Volver", null);
-
-            AlertDialog titulo = creditos.create();
-            titulo.setTitle("Blackjack realizado por:\n");
-            titulo.show();
-
-    }
-
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu,menu);
@@ -115,20 +102,6 @@ public class MenuInicial extends AppCompatActivity {
 
 
     }
-
-    public void dialogoEstadisticas() {
-        AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        dialogo.setTitle("Últimos diez ganadores:");
-        dialogo.setPositiveButton("Volver", null);
-
-        View dialogoView = inflater.inflate(R.layout.dialog_estadisticas, null);
-        dialogo.setView(dialogoView);
-
-        dialogo.show();
-
-    }
-
     public void dialogStats() {
         AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();

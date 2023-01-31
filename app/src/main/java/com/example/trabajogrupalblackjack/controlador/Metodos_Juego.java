@@ -36,20 +36,28 @@ import static com.example.trabajogrupalblackjack.vista.Juego.val9;
 import static com.example.trabajogrupalblackjack.vista.MenuInicial.jugador1;
 import static com.example.trabajogrupalblackjack.vista.MenuInicial.jugador2;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.trabajogrupalblackjack.R;
 import com.example.trabajogrupalblackjack.modelo.Cartas;
+import com.example.trabajogrupalblackjack.modelo.Estadisticas;
 import com.example.trabajogrupalblackjack.modelo.Player;
 import com.example.trabajogrupalblackjack.vista.MenuInicial;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Metodos_Juego {
 
+    public static List<Estadisticas> listaPartidas = new ArrayList<>();
 
     public static void iniciarplantado(Player player1, Player player2, ImageView btnplantarse1, ImageView btnplantarse2){
         pedircartaplayer2.setVisibility(View.INVISIBLE);
@@ -307,6 +315,29 @@ public class Metodos_Juego {
         }
 
         jugador.setPuntos(jugador.getPuntos()+puntos) ;
+    }
+
+    public static List<Estadisticas> mostrarEstadisticas(Context context){
+
+         listaPartidas = new ArrayList<>();
+
+        try (InputStreamReader inputStream = new InputStreamReader(context.openFileInput("estadisticas.csv"));
+             BufferedReader bf = new BufferedReader(inputStream)) {
+
+            bf.readLine();
+            String linea;
+            while ((linea = bf.readLine()) != null){
+                String[] ultimaspartidas = linea.split(";");
+
+                listaPartidas.add(new Estadisticas(ultimaspartidas[0],Integer.parseInt(ultimaspartidas[1]),ultimaspartidas[2]));
+            }
+        } catch (IOException e) {
+
+        }
+
+
+
+        return listaPartidas.stream().sorted().limit(10).collect(Collectors.toList());
     }
 
 }

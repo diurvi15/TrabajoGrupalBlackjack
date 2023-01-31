@@ -85,6 +85,7 @@ public class Juego extends AppCompatActivity {
 
         pedircartaplayer1.setOnClickListener(v->{
 
+            Metodos.crearsonido(getApplicationContext(), "sonido5");
             Cartas carta = darcarta();
             int puntos = valordelacarta(carta.getValor(),MenuInicial.jugador1);
             mano1.add(puntos);
@@ -105,6 +106,7 @@ public class Juego extends AppCompatActivity {
 
         pedircartaplayer2.setOnClickListener(v->{
 
+            Metodos.crearsonido(getApplicationContext(), "sonido5");
             Cartas carta = darcarta();
             int puntos = valordelacarta(carta.getValor(), jugador2);
             mano2.add(puntos);
@@ -376,14 +378,16 @@ public class Juego extends AppCompatActivity {
         if (jugador1.getPuntos() > jugador2.getPuntos()) {
 
             if (jugador1.getPuntos() == 21) {
-
+                Metodos.crearsonido(context, "sonido3");
                 alertasfinal(" ENHORABUENA HAS CONSEGUIDO 21 PUNTOS", jugador1, context);
                 return jugador1;
 
             } else if (jugador1.getPuntos() < 21) {
+                Metodos.crearsonido(context, "sonido3");
                 alertasfinal(" HAS GANADO", jugador1, context);
                 return jugador1;
             } else if (jugador1.getPuntos() > 21) {
+                Metodos.crearsonido(context, "sonido4");
                 alertasfinal(" TE HAS PASADO DE PUNTOS", jugador1, context);
                 return jugador2;
 
@@ -391,14 +395,16 @@ public class Juego extends AppCompatActivity {
         } else if (jugador1.getPuntos() < jugador2.getPuntos()) {
 
             if (jugador2.getPuntos() == 21) {
-
+                Metodos.crearsonido(context, "sonido3");
                 alertasfinal(" ENHORABUENA HAS CONSEGUIDO 21 PUNTOS", jugador2, context);
                 return jugador2;
 
             } else if (jugador2.getPuntos() < 21) {
+                Metodos.crearsonido(context, "sonido3");
                 alertasfinal(" HAS GANADO", jugador2, context);
                 return jugador2;
             } else if (jugador2.getPuntos() > 21) {
+                Metodos.crearsonido(context, "sonido4");
                 alertasfinal(" TE HAS PASADO DE PUNTOS", jugador2, context);
                 return jugador1;
             }
@@ -518,6 +524,13 @@ public class Juego extends AppCompatActivity {
 
                 lblpuntos1.setText(String.valueOf(0));
                 lblpuntos2.setText(String.valueOf(0));
+
+                try {
+                    Metodos.crearsonido(context, "sonido2");
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
                 Intent intent = new Intent(context, Juego.class);
                 startActivity(intent);

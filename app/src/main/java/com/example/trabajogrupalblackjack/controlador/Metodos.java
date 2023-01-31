@@ -96,6 +96,11 @@ public class Metodos {
                 sonido = MediaPlayer.create(context, R.raw.sonidoperderdos);
                 sonidoplay();
                 break;
+
+            case "sonido5":
+                sonido = MediaPlayer.create(context, R.raw.soundpedirdos);
+                sonidoplay();
+                break;
         }
     }
     public static void sonidoparar() {

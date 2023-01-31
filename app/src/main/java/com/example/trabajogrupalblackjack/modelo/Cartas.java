@@ -1,7 +1,5 @@
 package com.example.trabajogrupalblackjack.modelo;
 
-import java.util.List;
-
 public class Cartas {
     int valor;
     String palo;
@@ -15,15 +13,9 @@ public class Cartas {
         return valor;
     }
 
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
 
     public String getPalo() {
         return palo;
     }
 
-    public void setPalo(String palo) {
-        this.palo = palo;
-    }
 }

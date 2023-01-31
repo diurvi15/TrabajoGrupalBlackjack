@@ -1,5 +1,7 @@
 package com.example.trabajogrupalblackjack.modelo;
 
+import androidx.annotation.NonNull;
+
 public class Estadisticas implements Comparable<Estadisticas>{
 
     String nombre;
@@ -12,30 +14,17 @@ public class Estadisticas implements Comparable<Estadisticas>{
         this.fecha = fecha;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
     public int getPuntos() {
         return puntos;
     }
 
-    public void setPuntos(int puntos) {
-        this.puntos = puntos;
-    }
 
     public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
+    @NonNull
     @Override
     public String toString() {
         return  nombre  +

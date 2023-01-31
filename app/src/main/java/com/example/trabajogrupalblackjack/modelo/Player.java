@@ -1,5 +1,7 @@
 package com.example.trabajogrupalblackjack.modelo;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class Player implements Serializable {
@@ -19,10 +21,6 @@ public class Player implements Serializable {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public int getPuntos() {
         return puntos;
     }
@@ -39,6 +37,7 @@ public class Player implements Serializable {
         this.plantado = plantado;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return nombre + ";" +

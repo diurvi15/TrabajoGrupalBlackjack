@@ -1,0 +1,181 @@
+{
+    "totalCount": 7,
+    "start": 0,
+    "rows": 50,
+    "icon": "farmaciaguardia",
+    "result": [
+        {
+            "id": 8860,
+            "title": "Farmacia Artal Lerín, Ana Cristina",
+            "telefonos": "976226203",
+            "email": "info@somostufarmacia.es ",
+            "horario": "Lunes a Domingo 24 horas",
+            "descripcion": "<p>Red comercios amigables</p>",
+            "servicios": "<p>Farmacia, parafarmacia y ortopedia</p>",
+            "url": "http://www.somostufarmacia.es ",
+            "clasificacion": "HorarioAmpliado",
+            "calle": "Pº. de Sagasta, 8",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.8858667199718896,
+                    41.646146396697176
+                ]
+            },
+            "guardia": {
+                "fecha": "2023-02-14T00:00:00",
+                "turno": "T-37",
+                "horario": "Abiertas de 9:30 h. a 9:30 h. del día siguiente",
+                "sector": "Sector Gran Vía"
+            },
+            "type": [
+                "http://www.zaragoza.es/sede/portal/skos/vocab/FarmaciaGuardia/2023-02-14",
+                "http://www.zaragoza.es/sede/portal/skos/vocab/FarmaciaHorarioAmpliado"
+            ]
+        },
+        {
+            "id": 8801,
+            "title": "Farmacia Hernández Barrutia, Carlos",
+            "telefonos": "976338069",
+            "horario": "Lunes a Domingo 24 horas",
+            "clasificacion": "HorarioAmpliado",
+            "calle": "Vía Hispanidad, 136-",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.920447928588225,
+                    41.65563466959929
+                ]
+            },
+            "guardia": {
+                "fecha": "2023-02-14T00:00:00",
+                "turno": "T-37",
+                "horario": "Abiertas de 9:30 h. a 9:30 h. del día siguiente",
+                "sector": "Sector Delicias-Esquina C/ Biarritz-Urb. La Bombarda"
+            },
+            "type": [
+                "http://www.zaragoza.es/sede/portal/skos/vocab/FarmaciaGuardia/2023-02-14",
+                "http://www.zaragoza.es/sede/portal/skos/vocab/FarmaciaHorarioAmpliado"
+            ]
+        },
+        {
+            "id": 8855,
+            "title": "Farmacia Molina Gaudo, Rosario",
+            "telefonos": "976221393",
+            "calle": "Pza. de Nuestra Señora del Carmen, 5",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.8844455263325592,
+                    41.65085455873928
+                ]
+            },
+            "guardia": {
+                "fecha": "2023-02-14T00:00:00",
+                "turno": "T-37",
+                "horario": "Abiertas de 9:30 h. a 9:30 h. del día siguiente",
+                "sector": "Sector Centro-Final Calle Cádiz"
+            },
+            "type": [
+                "http://www.zaragoza.es/sede/portal/skos/vocab/FarmaciaGuardia/2023-02-14"
+            ]
+        },
+        {
+            "id": 8905,
+            "title": "Farmacia Romanos Salanova, Pablo",
+            "telefonos": "976294773",
+            "horario": "Sábados horario de mañanas de 9:30 a 13:30 h. (Junio,julio y agosto: 9:15 a 13:45 h.)",
+            "clasificacion": "HorarioAmpliado",
+            "calle": "Avda. Cataluña, 88",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.8643451479132789,
+                    41.66229908368983
+                ]
+            },
+            "guardia": {
+                "fecha": "2023-02-14T00:00:00",
+                "turno": "T-37",
+                "horario": "Abiertas de 9:30 h. a 9:30 h. del día siguiente",
+                "sector": "Sector Avda. Cataluña"
+            },
+            "type": [
+                "http://www.zaragoza.es/sede/portal/skos/vocab/FarmaciaGuardia/2023-02-14",
+                "http://www.zaragoza.es/sede/portal/skos/vocab/FarmaciaHorarioAmpliado"
+            ]
+        },
+        {
+            "id": 8909,
+            "title": "Farmacia Sanchez Villanueva, Monica",
+            "telefonos": "976350759",
+            "calle": "Vía Universitas, 2",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.905998333348586,
+                    41.643770839089846
+                ]
+            },
+            "guardia": {
+                "fecha": "2023-02-14T00:00:00",
+                "turno": "T-37",
+                "horario": "Abiertas de 9:30 h. a 9:30 h. del día siguiente",
+                "sector": "Sector Delicias-Entrada por C/ San Juan Bosco - Frente Escuela de Enfermería"
+            },
+            "type": [
+                "http://www.zaragoza.es/sede/portal/skos/vocab/FarmaciaGuardia/2023-02-14"
+            ]
+        },
+        {
+            "id": 8932,
+            "title": "Farmacia Torrijo Rodríguez, Concepción",
+            "telefonos": "976427855",
+            "horario": "Sábados horario de mañanas de 9:30 a 13:30 h. (Junio,julio y agosto: 9:15 a 13:45 h.)",
+            "clasificacion": "HorarioAmpliado",
+            "calle": "Avda. Cesáreo Alierta, 55",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.8740685236302439,
+                    41.64096167770263
+                ]
+            },
+            "guardia": {
+                "fecha": "2023-02-14T00:00:00",
+                "turno": "T-37",
+                "horario": "Abiertas de 9:30 h. a 9:30 h. del día siguiente",
+                "sector": "Sector San José-Esq. Avda. San José"
+            },
+            "type": [
+                "http://www.zaragoza.es/sede/portal/skos/vocab/FarmaciaGuardia/2023-02-14",
+                "http://www.zaragoza.es/sede/portal/skos/vocab/FarmaciaHorarioAmpliado"
+            ]
+        },
+        {
+            "id": 8810,
+            "title": "Farmacia Jiménez Alcina Herrer Tormo",
+            "telefonos": "976259890",
+            "horario": "Sábados horario de mañanas de 9:30 a 13:30 h. (Junio,julio y agosto: 9:15 a 13:45 h.)",
+            "clasificacion": "HorarioAmpliado",
+            "calle": "C/ Tintorretto, 14 (Parque Venecia)",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.8744953609190568,
+                    41.61955847020836
+                ]
+            },
+            "guardia": {
+                "fecha": "2023-02-14T00:00:00",
+                "turno": "T-37",
+                "horario": "Abiertas de 9:30 h. a 9:30 h. del día siguiente",
+                "sector": "Sector Torrero"
+            },
+            "type": [
+                "http://www.zaragoza.es/sede/portal/skos/vocab/FarmaciaGuardia/2023-02-14",
+                "http://www.zaragoza.es/sede/portal/skos/vocab/FarmaciaHorarioAmpliado"
+            ]
+        }
+    ]
+}
